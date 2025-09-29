@@ -15,6 +15,8 @@ const Projects = () => {
     }
   };
 
+  const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
@@ -22,7 +24,7 @@ const Projects = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
+        ease: easeOutCubic
       }
     }
   };

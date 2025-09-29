@@ -15,9 +15,11 @@ const Leadership = () => {
     }
   };
 
+  const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
   const itemVariants = {
     hidden: { y: 16, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: 'easeOut' } }
+    visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: easeOutCubic } }
   };
 
   const roles = [

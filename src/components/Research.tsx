@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FileText, ExternalLink, Calendar, Users, Award, BookOpen, Microscope } from 'lucide-react';
+import { FileText, ExternalLink, Calendar, Award, BookOpen, Microscope } from 'lucide-react';
 
 const Research = () => {
   const containerVariants = {
@@ -15,6 +15,8 @@ const Research = () => {
     }
   };
 
+  const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
@@ -22,7 +24,7 @@ const Research = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
+        ease: easeOutCubic
       }
     }
   };

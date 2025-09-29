@@ -23,7 +23,6 @@ const MathBackground = () => {
     // Mathematical function parameters
     const amplitude = 50;
     const frequency = 0.01;
-    const phase = 0;
     let time = 0;
 
     // Animation loop

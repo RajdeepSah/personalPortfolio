@@ -26,6 +26,8 @@ const Contact = () => {
     }
   };
 
+  const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
@@ -33,7 +35,7 @@ const Contact = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
+        ease: easeOutCubic
       }
     }
   };
@@ -55,7 +57,7 @@ const Contact = () => {
       await new Promise(resolve => setTimeout(resolve, 2000));
       setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -119,8 +121,8 @@ const Contact = () => {
               Get In Touch
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              I'm always interested in discussing new opportunities, collaborations, 
-              and innovative projects. Let's connect and explore how we can work together.
+              I&apos;m always interested in discussing new opportunities, collaborations, 
+              and innovative projects. Let&apos;s connect and explore how we can work together.
             </p>
           </motion.div>
 
@@ -191,7 +193,7 @@ const Contact = () => {
                   </h4>
                 </div>
                 <p className="text-gray-600 dark:text-gray-300 text-sm">
-                  I'm currently open to new opportunities, collaborations, and interesting projects. 
+                  I&apos;m currently open to new opportunities, collaborations, and interesting projects. 
                   Feel free to reach out!
                 </p>
               </div>
@@ -299,7 +301,7 @@ const Contact = () => {
                       animate={{ opacity: 1, y: 0 }}
                       className="p-4 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-lg text-sm"
                     >
-                      Thank you! Your message has been sent successfully. I'll get back to you soon.
+                      Thank you! Your message has been sent successfully. I&apos;ll get back to you soon.
                     </motion.div>
                   )}
 
