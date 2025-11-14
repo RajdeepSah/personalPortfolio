@@ -51,7 +51,7 @@ This repository contains the production-ready source code for Rajdeep Sah’s pe
 ### Installation
 
 ```bash
-git clone <your-fork-url>
+git clone <https://github.com/RajdeepSah/personalPortfolio.git>
 cd portfolio
 npm install
 npm run dev
@@ -152,7 +152,7 @@ Visit [http://localhost:3000](http://localhost:3000) to view the site. The dev s
 
 ## Deployment
 
-### Vercel (Recommended)
+### Vercel 
 
 1. Push your fork to GitHub.
 2. Import the repo into Vercel and select the `Next.js` framework preset.
@@ -174,8 +174,8 @@ Visit [http://localhost:3000](http://localhost:3000) to view the site. The dev s
 
 ## Contact & Support
 
-- Email: `rajdeep.sah@example.com`
-- LinkedIn: [https://linkedin.com/in/rajdeepsah](https://linkedin.com/in/rajdeepsah)
+- Email: `rajdeepofficialework@gmail.com`
+- LinkedIn: [https://linkedin.com/in/rajdeepsah](https://www.linkedin.com/in/rajdeep-sah-0a5363204/)
 - GitHub: [https://github.com/rajdeepsah](https://github.com/rajdeepsah)
 
 If you customize or extend the portfolio, feel free to open issues or pull requests so improvements can be shared with the community.
