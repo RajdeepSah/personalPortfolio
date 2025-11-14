@@ -57,7 +57,7 @@ const Hero = () => {
             variants={itemVariants}
             className="text-xl md:text-2xl text-secondary space-y-2"
           >
-            <p>Computer science & Mathematics student</p>
+            <p><b>Computer science & Mathematics student</b></p>
             <p>AI/ML Researcher | Mathematical Researcher | Developer | Entrepreneur</p>
             <p>Tutor | Mentor</p>
           </motion.div>
@@ -66,9 +66,10 @@ const Hero = () => {
           <motion.p
             variants={itemVariants}
             className="text-lg md:text-xl text-muted max-w-2xl mx-auto leading-relaxed"
-          >
+          ><i style={{ fontFamily: "Times New Roman, Times, serif" }}>
             Motivated by intellectual curiosity and a commitment to rigorous analytical thinking.
              My work centers on artificial intelligence and mathematical modeling, with an emphasis on developing adaptive, data-driven systems capable of addressing real-world challenges
+          </i>
           </motion.p>
 
           {/* CTA Buttons */}

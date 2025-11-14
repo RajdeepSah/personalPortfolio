@@ -60,26 +60,27 @@ const Research = () => {
   */
    ] ;
 
-  const researchAreas = [
-    {
-      title: "Artificial Intelligence & Machine Learning",
-      icon: Microscope,
-      description: "Research in advanced AI algorithms, deep learning architectures, and machine learning optimization techniques.",
-      focus: ["Neural Networks", "Deep Learning", "Computer Vision", "Natural Language Processing"]
-    },
-    {
-      title: "Mathematical Research",
-      icon: BookOpen,
-      description: "Mathematical modeling, optimization theory, and statistical analysis for solving complex real-world problems.",
-      focus: ["Mathematical Modeling", "Optimization Theory", "Statistical Analysis", "Applied Mathematics"]
-    },
-    {
-      title: "Educational Technology",
-      icon: Award,
-      description: "Exploring the intersection of technology and education, focusing on AI-driven learning solutions.",
-      focus: ["Educational AI", "Learning Analytics", "Adaptive Learning", "Digital Pedagogy"]
-    }
-  ];
+const researchAreas = [
+  {
+    title: "Artificial Intelligence & Machine Learning",
+    icon: Microscope,
+    description: "Research in advanced AI algorithms, deep learning architectures, and machine learning optimization techniques.",
+    focus: ["Neural Networks", "Deep Learning", "Computer Vision", "Natural Language Processing"]
+  },
+  {
+    title: "Mathematical Research",
+    icon: BookOpen,
+    description: "Mathematical modeling, optimization theory, and statistical analysis for solving complex real-world problems.",
+    focus: ["Mathematical Modeling", "Optimization Theory", "Statistical Analysis", "Applied Mathematics"]
+  },
+  {
+    title: "Educational Technology",
+    icon: Award,
+    description: "Exploring the intersection of technology and education, focusing on AI-driven learning solutions.",
+    focus: ["Educational AI", "Learning Analytics", "Adaptive Learning", "Digital Pedagogy"]
+  }
+];
+
 
   const upcomingResearch = [
     {
@@ -95,6 +96,25 @@ const Research = () => {
       description: "Exploring quantum computing applications in machine learning for enhanced financial risk assessment and modeling."
     }
   ];
+
+  
+
+  const featuredArticles = [
+  {
+    title: "Coding, Math & Cybersecurity: Rajdeep Sah's Unexpected Path",
+    description:
+      "Profile feature in Washburn Review highlighting my journey from Nepal to Washburn University and passion for technology and mathematics.",
+    link: "https://washburnreview.org/54229/features/profile/coding-math-cybersecurity-rajdeep-sahs-unexpected-path/"
+  },
+  {
+    title: "Washburn CIS Students Present Research at National Conference",
+    description:
+      "Coverage of our research presentation at the national IACIS conference, showcasing Washburn students' contributions to AI research.",
+    link: "https://washburnreview.org/56044/news/washburn-cis-students-present-research-at-national-conference/"
+  }
+];
+
+
 
   const stats = [
     { label: 'Published Papers', value: '2' },
@@ -114,33 +134,6 @@ const Research = () => {
             </p>
           </motion.div>
 
-          <motion.div variants={itemVariants}>
-            <h3 className="text-2xl font-bold text-primary mb-8 text-center">Research Focus Areas</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {researchAreas.map((area, index) => {
-                const Icon = area.icon;
-                return (
-                  <motion.div key={index} whileHover={{ scale: 1.05 }} className="card-premium p-6">
-                    <div className="w-12 h-12 rounded-2xl icon-chip flex items-center justify-center mb-4">
-                      <Icon className="w-6 h-6 text-[var(--accent)]" />
-                    </div>
-                    <h4 className="text-xl font-bold text-primary mb-3">{area.title}</h4>
-                    <p className="text-secondary mb-4">{area.description}</p>
-                    <div className="space-y-1">
-                      {area.focus.map((focus, focusIndex) => (
-                        <span
-                          key={focusIndex}
-                          className="inline-block px-2 py-1 bg-surface-muted text-secondary rounded text-xs font-medium mr-2 mb-1 border border-soft"
-                        >
-                          {focus}
-                        </span>
-                      ))}
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
 
           <motion.div variants={itemVariants}>
             <h3 className="text-2xl font-bold text-primary mb-8 text-center">Publications</h3>
@@ -221,6 +214,73 @@ const Research = () => {
               ))}
             </div>
           </motion.div>
+
+
+
+          <motion.div variants={itemVariants}>
+            <h3 className="text-2xl font-bold text-primary mb-8 text-center">Research Focus Areas</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {researchAreas.map((area, index) => {
+                const Icon = area.icon;
+                return (
+                  <motion.div key={index} whileHover={{ scale: 1.05 }} className="card-premium p-6">
+                    <div className="w-12 h-12 rounded-2xl icon-chip flex items-center justify-center mb-4">
+                      <Icon className="w-6 h-6 text-[var(--accent)]" />
+                    </div>
+                    <h4 className="text-xl font-bold text-primary mb-3">{area.title}</h4>
+                    <p className="text-secondary mb-4">{area.description}</p>
+                    <div className="space-y-1">
+                      {area.focus.map((focus, focusIndex) => (
+                        <span
+                          key={focusIndex}
+                          className="inline-block px-2 py-1 bg-surface-muted text-secondary rounded text-xs font-medium mr-2 mb-1 border border-soft"
+                        >
+                          {focus}
+                        </span>
+                      ))}
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
+
+
+
+{/* Featured Articles */}
+<motion.div variants={itemVariants}>
+  <h3 className="text-2xl font-bold text-primary mb-8 text-center">Featured Articles</h3>
+  
+  <div className="space-y-8">
+    {featuredArticles.map((article, index) => (
+      <motion.div
+        key={index}
+        whileHover={{ scale: 1.02 }}
+        className="card-premium p-6"
+      >
+        <h4 className="text-xl font-bold text-primary mb-2">{article.title}</h4>
+        <p className="text-secondary mb-4">{article.description}</p>
+
+        <motion.a
+          href={article.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="inline-flex items-center px-4 py-2 btn-premium text-sm font-medium gap-2"
+        >
+          <ExternalLink className="w-4 h-4" />
+          Read Article
+        </motion.a>
+      </motion.div>
+    ))}
+  </div>
+</motion.div>
+
+
+
+
+
 
           <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
