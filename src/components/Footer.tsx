@@ -125,7 +125,7 @@ const Footer = () => {
               className="text-muted text-sm flex items-center mt-4 md:mt-0"
               whileHover={{ scale: 1.05 }}
             >
-              Made using Next.js & TailwindCSS
+              Designed with logic, symmetry & a little chaos
             </motion.p>
           </div>
         </div>

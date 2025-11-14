@@ -29,18 +29,19 @@ const Research = () => {
 
   const publications = [
     {
-      title: "Generative AI in Higher Education: Opportunities, Challenges, and Future Directions",
-      authors: "Rajdeep Sah, Dr. Sarah Johnson, Dr. Michael Chen",
+      title: "Generative AI in higher education: student and faculty perspectives on use, ethics, and impact",
+      authors: "Rajdeep Sah, Dr. Sun, Cameron Hagemaster, Arpan Adhikari, Ari Lee",
       venue: "International Association for Computer Information Systems (IACIS) Conference",
-      year: "2024",
+      year: "2025",
       type: "Conference Paper",
       status: "Published",
-      description: "This research explores the transformative potential of generative AI technologies in higher education, examining both the opportunities for enhanced learning experiences and the challenges institutions face in implementation.",
-      keywords: ["Generative AI", "Higher Education", "Educational Technology", "Machine Learning"],
-      doi: "10.1000/example.doi",
-      link: "#",
+      description: "This study examines how generative AI is impacting college students and faculty, using survey data from 114 students and interviews with 18 professors to compare their perceptions, usage patterns, and concerns. Results show that students view AI as a helpful academic tool, especially for managing workload while faculty remain more cautious, highlighting ethical issues and the need for clearer institutional guidelines.",
+      keywords: ["Generative AI", "student perception", "faculty perspective", "higher education", "ethical AI use", "AI policy"],
+      doi: "https://doi.org/10.48009/2_iis_129 ",
+      link: "https://iacis.org/conference/openconf2025/modules/request.php?module=oc_program&action=summary.php&id=110",
       abstract: "The rapid advancement of generative artificial intelligence (AI) technologies presents unprecedented opportunities for transforming higher education. This paper investigates the current state of generative AI applications in educational settings, identifies key opportunities for enhancing learning experiences, and addresses the challenges institutions face in adopting these technologies responsibly."
     },
+    /*
     {
       title: "Mathematical Modeling in Machine Learning: A Comprehensive Framework",
       authors: "Rajdeep Sah, Dr. Emily Rodriguez",
@@ -54,7 +55,10 @@ const Research = () => {
       link: "#",
       abstract: "This paper presents a novel mathematical framework for enhancing machine learning algorithms through advanced mathematical modeling techniques. The framework addresses optimization challenges and provides theoretical foundations for improved algorithm performance."
     }
-  ];
+  ]
+    
+  */
+   ] ;
 
   const researchAreas = [
     {

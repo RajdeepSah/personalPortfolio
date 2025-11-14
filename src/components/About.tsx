@@ -27,78 +27,43 @@ const About = () => {
     }
   };
 
-  const timelineData = [
-    {
-      type: 'education',
-      icon: GraduationCap,
-      title: 'Master of Science in Computer Science',
-      institution: 'Washburn University',
-      period: '2023 - 2025',
-      description: 'Specializing in Artificial Intelligence and Machine Learning',
-      details: [
-        'Advanced Machine Learning Algorithms',
-        'Deep Learning and Neural Networks',
-        'Computer Vision and Natural Language Processing',
-        'Research in Generative AI Applications'
-      ]
-    },
-    {
-      type: 'education',
-      icon: GraduationCap,
-      title: 'Bachelor of Science in Mathematics',
-      institution: 'Previous University',
-      period: '2019 - 2023',
-      description: 'Strong foundation in mathematical theory and applications',
-      details: [
-        'Advanced Calculus and Linear Algebra',
-        'Statistics and Probability Theory',
-        'Mathematical Modeling',
-        'Research in Mathematical Applications'
-      ]
-    },
-    {
-      type: 'experience',
-      icon: Briefcase,
-      title: 'AI/ML Engineer',
-      company: 'Current Position',
-      period: '2024 - Present',
-      description: 'Developing cutting-edge AI solutions and machine learning models',
-      details: [
-        'Design and implement ML algorithms',
-        'Research and development in AI technologies',
-        'Team leadership and project management',
-        'Cross-functional collaboration'
-      ]
-    },
-    {
-      type: 'experience',
-      icon: Briefcase,
-      title: 'Research Assistant',
-      company: 'Washburn University',
-      period: '2023 - 2024',
-      description: 'Conducted research in Generative AI applications in higher education',
-      details: [
-        'Published research paper on Generative AI',
-        'Presented at IACIS conference',
-        'Collaborated with faculty on research projects',
-        'Mentored undergraduate students'
-      ]
-    },
-    {
-      type: 'certification',
-      icon: Award,
-      title: 'Professional Certifications',
-      company: 'Various Institutions',
-      period: '2022 - 2024',
-      description: 'Continuous learning and professional development',
-      details: [
-        'AWS Machine Learning Specialty',
-        'Google Cloud AI/ML Professional',
-        'Microsoft Azure AI Engineer',
-        'Deep Learning Specialization (Coursera)'
-      ]
-    }
-  ];
+const timelineData = [
+  {
+    type: 'education',
+    icon: GraduationCap,
+    title: 'Bachelor of Science in Computer Information Science & Bachelor of Science in Pure Mathematics',
+    institution: 'Washburn University, Topeka, KS',
+    period: 'Aug 2023 – Dec 2026',
+    description: 'Double-major focusing on computational thinking, algorithms, and analytical problem-solving.',
+    details: [
+      'Coursework in Algorithms, Data Structures, Software Engineering, and Database Systems',
+      'Upper-division mathematics including Real Analysis, Abstract Algebra, and Probability Theory',
+      'Business Minor with Entrepreneurship specialization',
+      'Research experience in Generative AI applications in higher education'
+    ]
+  },
+  {
+    type: 'education',
+    icon: GraduationCap,
+    title: 'High School - Science Stream',
+    institution: 'Liverpool International College, Kathmandu, Nepal',
+    period: 'Aug 2020 – May 2022',
+    description: 'Completed +2 education with emphasis on mathematics and computer science.',
+    details: [
+      'Advanced Mathematics and Physics coursework',
+      'Introduction to programming concepts',
+      'Graduated with strong academic performance'
+    ]
+  }
+];
+
+const certifications = [
+  'CS50X: Introduction to Computer Science — Harvard University (Online, 2022)',
+  'Stanford Engineering Everywhere (SEE): Programming Methodology — Stanford University (Online, 2022)',
+  'Machine Learning with Python — Deerwalk Training Center, Kathmandu (2023)',
+  'Digital Marketing Certification — IIDE (Online, 2023)'
+];
+
 
   return (
     <section className="py-20 bg-app">
@@ -212,6 +177,26 @@ const About = () => {
             </div>
           </motion.div>
 
+
+          {/* Certifications Section */}
+          <motion.div variants={itemVariants} className="card-premium p-8">
+            <h3 className="text-2xl font-bold text-primary mb-6 text-center">
+              Certifications & Online Courses
+            </h3>
+
+            <ul className="space-y-3 text-secondary max-w-3xl mx-auto">
+              {certifications.map((cert, index) => (
+                <li 
+                  key={index} 
+                  className="text-sm flex items-start"
+                >
+                  <span className="w-2 h-2 bg-[var(--accent-muted)] rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                  {cert}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
           {/* Skills Summary */}
           <motion.div variants={itemVariants} className="card-premium p-8">
             <h3 className="text-2xl font-bold text-primary mb-6 text-center">
@@ -235,11 +220,14 @@ const About = () => {
                   Development
                 </h4>
                 <ul className="text-sm text-secondary space-y-1">
-                  <li>Python, R, JavaScript</li>
-                  <li>TensorFlow, PyTorch</li>
-                  <li>React, Next.js</li>
-                  <li>Cloud Platforms (AWS, GCP)</li>
-                  <li>Database Management</li>
+                  <li>Java, Python, C, C++, C#, JavaScript, TypeScript</li>
+                  <li>React.js, Next.js, Node.js, Flask, Django, JavaFX</li>
+                  <li>TensorFlow, PyTorch, NumPy, Pandas, Scikit-learn</li>
+                  <li>Cloud Platforms (AWS)</li>
+                  <li>SQL (MySQL, PostgreSQL), MongoDB</li>
+                  <li>Git, Postman, JUnit, PyTest, Selenium</li>
+                  <li> LATEX (academic writing), Jira, Trello, Agile & Scrum methodologies</li>
+                  <li>Blockchain Technology</li>
                 </ul>
               </div>
               <div className="text-center">
