@@ -46,12 +46,12 @@ const Leadership = () => {
   ];
 
   return (
-    <section className="py-20 bg-gray-50 dark:bg-gray-800">
+    <section className="py-20 bg-app">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-12">
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Leadership & Events</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">Leadership & Events</h2>
+            <p className="text-xl text-secondary max-w-3xl mx-auto">
               Highlights from leadership roles, event organization, and community building.
             </p>
           </motion.div>
@@ -62,29 +62,29 @@ const Leadership = () => {
                 key={idx}
                 variants={itemVariants}
                 whileHover={{ y: -6 }}
-                className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-700"
+                className="card-premium p-6"
               >
                 <div className="flex items-start mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-purple-100 dark:bg-purple-900 flex items-center justify-center mr-4">
-                    <Users className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                  <div className="w-12 h-12 rounded-2xl icon-chip flex items-center justify-center mr-4">
+                    <Users className="w-6 h-6 text-[var(--accent)]" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">{role.title}</h3>
-                    <p className="text-blue-600 dark:text-blue-400 font-medium">{role.org}</p>
-                    <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mt-1">
+                    <h3 className="text-xl font-bold text-primary">{role.title}</h3>
+                    <p className="text-[var(--accent)] font-medium">{role.org}</p>
+                    <div className="flex flex-wrap items-center gap-4 text-sm text-muted mt-1">
                       <span className="flex items-center"><Calendar className="w-4 h-4 mr-1" />{role.period}</span>
                       <span className="flex items-center"><MapPin className="w-4 h-4 mr-1" />{role.location}</span>
                     </div>
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center">
-                    <Trophy className="w-4 h-4 mr-2 text-yellow-500" /> Key Highlights
+                  <h4 className="text-sm font-semibold text-secondary mb-2 flex items-center">
+                    <Trophy className="w-4 h-4 mr-2 text-yellow-400" /> Key Highlights
                   </h4>
                   <ul className="space-y-1">
                     {role.highlights.map((h, i) => (
-                      <li key={i} className="text-sm text-gray-600 dark:text-gray-300 flex items-start">
-                        <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      <li key={i} className="text-sm text-muted flex items-start">
+                        <span className="w-1.5 h-1.5 bg-[var(--accent-muted)] rounded-full mt-2 mr-3 flex-shrink-0"></span>
                         {h}
                       </li>
                     ))}

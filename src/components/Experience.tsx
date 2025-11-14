@@ -106,18 +106,18 @@ const Experience = () => {
   const getTypeColor = (type: string) => {
     switch (type) {
       case 'professional':
-        return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
+        return 'badge-premium badge-success';
       case 'internship':
-        return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
+        return 'badge-premium';
       case 'leadership':
-        return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200';
+        return 'badge-premium badge-warning';
       default:
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200';
+        return 'badge-premium';
     }
   };
 
   return (
-    <section className="py-20 bg-gray-50 dark:bg-gray-800">
+    <section className="py-20 bg-app">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={containerVariants}
@@ -127,10 +127,10 @@ const Experience = () => {
         >
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
               Professional Experience
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-secondary max-w-3xl mx-auto">
               A journey through my professional experiences, internships, and leadership roles 
               that have shaped my expertise in AI/ML, research, and team management.
             </p>
@@ -148,25 +148,25 @@ const Experience = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: index * 0.1 }}
                   whileHover={{ scale: 1.02 }}
-                  className="bg-white dark:bg-gray-900 rounded-lg p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
+                  className="card-premium p-8"
                 >
                   <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
                     <div className="flex-1">
                       <div className="flex items-center mb-3">
-                        <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mr-4">
-                          <Icon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                        <div className="w-12 h-12 icon-chip rounded-2xl flex items-center justify-center mr-4">
+                          <Icon className="w-6 h-6 text-[var(--accent)]" />
                         </div>
                         <div>
-                          <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                          <h3 className="text-2xl font-bold text-primary">
                             {experience.title}
                           </h3>
-                          <p className="text-lg font-semibold text-blue-600 dark:text-blue-400">
+                          <p className="text-lg font-semibold text-[var(--accent)]">
                             {experience.company}
                           </p>
                         </div>
                       </div>
                       
-                      <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-4">
+                      <div className="flex flex-wrap items-center gap-4 text-sm text-muted mb-4">
                         <div className="flex items-center">
                           <Calendar className="w-4 h-4 mr-1" />
                           {experience.period}
@@ -175,28 +175,28 @@ const Experience = () => {
                           <MapPin className="w-4 h-4 mr-1" />
                           {experience.location}
                         </div>
-                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${getTypeColor(experience.type)}`}>
+                        <span className={`text-xs font-medium ${getTypeColor(experience.type)}`}>
                           {experience.type.charAt(0).toUpperCase() + experience.type.slice(1)}
                         </span>
                       </div>
                     </div>
                   </div>
 
-                  <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                  <p className="text-secondary mb-6 leading-relaxed">
                     {experience.description}
                   </p>
 
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {/* Key Achievements */}
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center">
-                        <Trophy className="w-5 h-5 mr-2 text-yellow-500" />
+                      <h4 className="text-lg font-semibold text-primary mb-3 flex items-center">
+                        <Trophy className="w-5 h-5 mr-2 text-yellow-400" />
                         Key Achievements
                       </h4>
                       <ul className="space-y-2">
                         {experience.achievements.map((achievement, achievementIndex) => (
-                          <li key={achievementIndex} className="text-sm text-gray-600 dark:text-gray-300 flex items-start">
-                            <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <li key={achievementIndex} className="text-sm text-muted flex items-start">
+                            <span className="w-1.5 h-1.5 bg-[var(--accent-muted)] rounded-full mt-2 mr-3 flex-shrink-0"></span>
                             {achievement}
                           </li>
                         ))}
@@ -205,14 +205,14 @@ const Experience = () => {
 
                     {/* Skills Used */}
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                      <h4 className="text-lg font-semibold text-primary mb-3">
                         Skills & Technologies
                       </h4>
                       <div className="flex flex-wrap gap-2">
                         {experience.skills.map((skill, skillIndex) => (
                           <span
                             key={skillIndex}
-                            className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium"
+                            className="px-3 py-1 bg-surface-muted text-secondary rounded-full text-sm font-medium border border-soft"
                           >
                             {skill}
                           </span>
@@ -227,22 +227,17 @@ const Experience = () => {
 
           {/* Statistics Section */}
           <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="text-center bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
-              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">3+</div>
-              <div className="text-gray-600 dark:text-gray-300">Years Experience</div>
-            </div>
-            <div className="text-center bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
-              <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">15+</div>
-              <div className="text-gray-600 dark:text-gray-300">Projects Completed</div>
-            </div>
-            <div className="text-center bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
-              <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">5+</div>
-              <div className="text-gray-600 dark:text-gray-300">Research Papers</div>
-            </div>
-            <div className="text-center bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
-              <div className="text-3xl font-bold text-yellow-600 dark:text-yellow-400 mb-2">10+</div>
-              <div className="text-gray-600 dark:text-gray-300">Events Organized</div>
-            </div>
+            {[
+              { stat: '3+', label: 'Years Experience' },
+              { stat: '15+', label: 'Projects Completed' },
+              { stat: '5+', label: 'Research Papers' },
+              { stat: '10+', label: 'Events Organized' },
+            ].map((item, idx) => (
+              <div key={idx} className="text-center card-premium p-6">
+                <div className="text-3xl font-bold text-[var(--accent)] mb-2">{item.stat}</div>
+                <div className="text-muted">{item.label}</div>
+              </div>
+            ))}
           </motion.div>
         </motion.div>
       </div>

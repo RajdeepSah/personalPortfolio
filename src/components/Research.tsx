@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FileText, ExternalLink, Calendar, Users, Award, BookOpen, Microscope } from 'lucide-react';
+import { FileText, ExternalLink, Award, BookOpen, Microscope } from 'lucide-react';
 
 const Research = () => {
   const containerVariants = {
@@ -92,55 +92,41 @@ const Research = () => {
     }
   ];
 
+  const stats = [
+    { label: 'Published Papers', value: '2' },
+    { label: 'Conference Presentations', value: '1' },
+    { label: 'Research Areas', value: '3' },
+    { label: 'Ongoing Projects', value: '2' }
+  ];
+
   return (
-    <section className="py-20 bg-white dark:bg-gray-900">
+    <section className="py-20 bg-app">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="space-y-16"
-        >
-          {/* Section Header */}
+        <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-16">
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              Publications & Research
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Exploring the frontiers of artificial intelligence, machine learning, and mathematical research 
-              to solve complex problems and advance human knowledge.
+            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">Publications & Research</h2>
+            <p className="text-xl text-secondary max-w-3xl mx-auto">
+              Exploring the frontiers of artificial intelligence, machine learning, and mathematical research to solve complex problems and advance human knowledge.
             </p>
           </motion.div>
 
-          {/* Research Areas */}
           <motion.div variants={itemVariants}>
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-              Research Focus Areas
-            </h3>
+            <h3 className="text-2xl font-bold text-primary mb-8 text-center">Research Focus Areas</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {researchAreas.map((area, index) => {
                 const Icon = area.icon;
-                
                 return (
-                  <motion.div
-                    key={index}
-                    whileHover={{ scale: 1.05 }}
-                    className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
-                  >
-                    <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4">
-                      <Icon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                  <motion.div key={index} whileHover={{ scale: 1.05 }} className="card-premium p-6">
+                    <div className="w-12 h-12 rounded-2xl icon-chip flex items-center justify-center mb-4">
+                      <Icon className="w-6 h-6 text-[var(--accent)]" />
                     </div>
-                    <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                      {area.title}
-                    </h4>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4">
-                      {area.description}
-                    </p>
+                    <h4 className="text-xl font-bold text-primary mb-3">{area.title}</h4>
+                    <p className="text-secondary mb-4">{area.description}</p>
                     <div className="space-y-1">
                       {area.focus.map((focus, focusIndex) => (
                         <span
                           key={focusIndex}
-                          className="inline-block px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded text-xs font-medium mr-2 mb-1"
+                          className="inline-block px-2 py-1 bg-surface-muted text-secondary rounded text-xs font-medium mr-2 mb-1 border border-soft"
                         >
                           {focus}
                         </span>
@@ -152,11 +138,8 @@ const Research = () => {
             </div>
           </motion.div>
 
-          {/* Publications */}
           <motion.div variants={itemVariants}>
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-              Publications
-            </h3>
+            <h3 className="text-2xl font-bold text-primary mb-8 text-center">Publications</h3>
             <div className="space-y-8">
               {publications.map((publication, index) => (
                 <motion.div
@@ -165,55 +148,31 @@ const Research = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: index * 0.1 }}
                   whileHover={{ scale: 1.02 }}
-                  className="bg-gray-50 dark:bg-gray-800 rounded-lg p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
+                  className="card-premium p-8"
                 >
                   <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-4">
                     <div className="flex-1">
                       <div className="flex items-center mb-3">
-                        <FileText className="w-6 h-6 text-blue-600 dark:text-blue-400 mr-3" />
-                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                          publication.status === 'Published' 
-                            ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-                            : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
-                        }`}>
+                        <FileText className="w-6 h-6 text-[var(--accent)] mr-3" />
+                        <span className={`text-xs font-medium ${publication.status === 'Published' ? 'badge-premium badge-success' : 'badge-premium badge-warning'}`}>
                           {publication.status}
                         </span>
                       </div>
-                      <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                        {publication.title}
-                      </h4>
-                      <p className="text-gray-600 dark:text-gray-300 mb-3">
-                        <strong>Authors:</strong> {publication.authors}
+                      <h4 className="text-2xl font-bold text-primary mb-2">{publication.title}</h4>
+                      <p className="text-secondary mb-2">{publication.authors}</p>
+                      <p className="text-muted text-sm">
+                        {publication.venue} • {publication.year} • {publication.type}
                       </p>
-                      <p className="text-gray-600 dark:text-gray-300 mb-3">
-                        <strong>Venue:</strong> {publication.venue}
-                      </p>
-                    </div>
-                    <div className="flex flex-col items-end space-y-2">
-                      <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                        <Calendar className="w-4 h-4 mr-1" />
-                        {publication.year}
-                      </div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">
-                        {publication.type}
-                      </div>
                     </div>
                   </div>
 
-                  <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                    {publication.description}
-                  </p>
+                  <p className="text-secondary mb-4 leading-relaxed">{publication.description}</p>
 
                   <div className="mb-4">
-                    <h5 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                      Keywords:
-                    </h5>
+                    <h5 className="text-sm font-semibold text-secondary mb-2">Keywords:</h5>
                     <div className="flex flex-wrap gap-2">
                       {publication.keywords.map((keyword, keywordIndex) => (
-                        <span
-                          key={keywordIndex}
-                          className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded text-xs font-medium"
-                        >
+                        <span key={keywordIndex} className="px-2 py-1 bg-surface-muted text-secondary rounded text-xs font-medium border border-soft">
                           {keyword}
                         </span>
                       ))}
@@ -221,7 +180,7 @@ const Research = () => {
                   </div>
 
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                    <div className="text-sm text-gray-500 dark:text-gray-400 mb-2 sm:mb-0">
+                    <div className="text-sm text-muted mb-2 sm:mb-0">
                       <strong>DOI:</strong> {publication.doi}
                     </div>
                     <motion.a
@@ -230,9 +189,9 @@ const Research = () => {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 text-sm font-medium"
+                      className="inline-flex items-center px-4 py-2 btn-premium text-sm font-medium gap-2"
                     >
-                      <ExternalLink className="w-4 h-4 mr-2" />
+                      <ExternalLink className="w-4 h-4" />
                       View Publication
                     </motion.a>
                   </div>
@@ -241,59 +200,31 @@ const Research = () => {
             </div>
           </motion.div>
 
-          {/* Upcoming Research */}
           <motion.div variants={itemVariants}>
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-              Upcoming Research
-            </h3>
+            <h3 className="text-2xl font-bold text-primary mb-8 text-center">Upcoming Research</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {upcomingResearch.map((research, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ scale: 1.02 }}
-                  className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
-                >
+                <motion.div key={index} whileHover={{ scale: 1.02 }} className="card-premium p-6">
                   <div className="flex items-center justify-between mb-3">
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      research.status === 'In Progress' 
-                        ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
-                        : 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200'
-                    }`}>
+                    <span className={`text-xs font-medium ${research.status === 'In Progress' ? 'badge-premium badge-success' : 'badge-premium'}`}>
                       {research.status}
                     </span>
-                    <span className="text-sm text-gray-500 dark:text-gray-400">
-                      Expected: {research.expectedCompletion}
-                    </span>
+                    <span className="text-sm text-muted">Expected: {research.expectedCompletion}</span>
                   </div>
-                  <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
-                    {research.title}
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">
-                    {research.description}
-                  </p>
+                  <h4 className="text-lg font-bold text-primary mb-3">{research.title}</h4>
+                  <p className="text-secondary text-sm">{research.description}</p>
                 </motion.div>
               ))}
             </div>
           </motion.div>
 
-          {/* Research Statistics */}
           <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="text-center bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-lg">
-              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">2</div>
-              <div className="text-gray-600 dark:text-gray-300">Published Papers</div>
-            </div>
-            <div className="text-center bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-lg">
-              <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">1</div>
-              <div className="text-gray-600 dark:text-gray-300">Conference Presentations</div>
-            </div>
-            <div className="text-center bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-lg">
-              <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">3</div>
-              <div className="text-gray-600 dark:text-gray-300">Research Areas</div>
-            </div>
-            <div className="text-center bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-lg">
-              <div className="text-3xl font-bold text-yellow-600 dark:text-yellow-400 mb-2">2</div>
-              <div className="text-gray-600 dark:text-gray-300">Ongoing Projects</div>
-            </div>
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center card-premium p-6">
+                <div className="text-3xl font-bold text-[var(--accent)] mb-2">{stat.value}</div>
+                <div className="text-muted">{stat.label}</div>
+              </div>
+            ))}
           </motion.div>
         </motion.div>
       </div>

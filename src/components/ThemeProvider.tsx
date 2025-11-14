@@ -1,8 +1,9 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState, useCallback } from 'react';
 
 type Theme = 'dark' | 'light' | 'system';
+type ResolvedTheme = 'dark' | 'light';
 
 type ThemeProviderProps = {
   children: React.ReactNode;
@@ -12,11 +13,13 @@ type ThemeProviderProps = {
 
 type ThemeProviderState = {
   theme: Theme;
+  resolvedTheme: ResolvedTheme;
   setTheme: (theme: Theme) => void;
 };
 
 const initialState: ThemeProviderState = {
   theme: 'system',
+  resolvedTheme: 'light',
   setTheme: () => null,
 };
 
@@ -28,43 +31,67 @@ export function ThemeProvider({
   storageKey = 'vite-ui-theme',
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(defaultTheme);
+  const [theme, setThemeState] = useState<Theme>(defaultTheme);
+  const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>('light');
 
-  useEffect(() => {
-    // Only access localStorage on the client side
-    if (typeof window !== 'undefined') {
-      const storedTheme = localStorage.getItem(storageKey) as Theme;
-      if (storedTheme) {
-        setTheme(storedTheme);
+  const applyTheme = useCallback(
+    (themeToApply: Theme) => {
+      if (typeof window === 'undefined') {
+        return;
       }
-    }
-  }, [storageKey]);
 
-  useEffect(() => {
-    const root = window.document.documentElement;
-
-    root.classList.remove('light', 'dark');
-
-    if (theme === 'system') {
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
-        .matches
+      const root = window.document.documentElement;
+      const systemTheme: ResolvedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
         ? 'dark'
         : 'light';
+      const nextTheme: ResolvedTheme = themeToApply === 'system' ? systemTheme : themeToApply;
 
-      root.classList.add(systemTheme);
+      root.classList.remove('light', 'dark');
+      root.classList.add(nextTheme);
+      setResolvedTheme(nextTheme);
+    },
+    []
+  );
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
       return;
     }
 
-    root.classList.add(theme);
+    const storedTheme = (localStorage.getItem(storageKey) as Theme) || defaultTheme;
+    setThemeState(storedTheme);
+  }, [defaultTheme, storageKey]);
+
+  useEffect(() => {
+    applyTheme(theme);
+  }, [applyTheme, theme]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || theme !== 'system') {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const listener = (event: MediaQueryListEvent) => {
+      const systemTheme: ResolvedTheme = event.matches ? 'dark' : 'light';
+      const root = window.document.documentElement;
+      root.classList.remove('light', 'dark');
+      root.classList.add(systemTheme);
+      setResolvedTheme(systemTheme);
+    };
+
+    mediaQuery.addEventListener('change', listener);
+    return () => mediaQuery.removeEventListener('change', listener);
   }, [theme]);
 
   const value = {
     theme,
+    resolvedTheme,
     setTheme: (theme: Theme) => {
       if (typeof window !== 'undefined') {
         localStorage.setItem(storageKey, theme);
       }
-      setTheme(theme);
+      setThemeState(theme);
     },
   };
 
@@ -78,8 +105,9 @@ export function ThemeProvider({
 export const useTheme = () => {
   const context = useContext(ThemeProviderContext);
 
-  if (context === undefined)
+  if (context === undefined) {
     throw new Error('useTheme must be used within a ThemeProvider');
+  }
 
   return context;
 };
