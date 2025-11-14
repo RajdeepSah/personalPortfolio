@@ -66,10 +66,10 @@ export async function POST(request: Request) {
   }
 
   try {
-    const { error } = await resend.emails.send({
+      const { error } = await resend.emails.send({
       from: 'Portfolio Contact <onboarding@resend.dev>',
       to: 'rajdeepofficialework@gmail.com',
-      reply_to: payload.email.trim(),
+        replyTo: payload.email.trim(),
       subject: `New Portfolio Contact: ${payload.subject.trim()}`,
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #0f172a;">
