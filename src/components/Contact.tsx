@@ -1,19 +1,50 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Send, MessageCircle } from 'lucide-react';
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  Twitter,
+  Send,
+  MessageCircle,
+  Facebook,
+  Instagram
+} from 'lucide-react';
 import { useState } from 'react';
+import type { ChangeEvent, FormEvent } from 'react';
+
+type ContactFormData = {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+};
+
+type ContactFormErrors = Partial<Record<keyof ContactFormData, string>>;
+
+type ContactResponse = {
+  success: boolean;
+  error?: string;
+};
+
+const initialFormState: ContactFormData = {
+  name: '',
+  email: '',
+  subject: '',
+  message: ''
+};
+
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-
+  const [formData, setFormData] = useState<ContactFormData>(initialFormState);
+  const [formErrors, setFormErrors] = useState<ContactFormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [feedbackMessage, setFeedbackMessage] = useState<string>('');
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -38,25 +69,94 @@ const Contact = () => {
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+    const fieldName = name as keyof ContactFormData;
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [fieldName]: value
     }));
+    setFormErrors(prev => {
+      if (!prev[fieldName]) {
+        return prev;
+      }
+      const next = { ...prev };
+      delete next[fieldName];
+      return next;
+    });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const validateForm = (values: ContactFormData): ContactFormErrors => {
+    const errors: ContactFormErrors = {};
+
+    if (!values.name.trim()) {
+      errors.name = 'Name is required.';
+    }
+
+    if (!values.email.trim()) {
+      errors.email = 'Email is required.';
+    } else if (!emailPattern.test(values.email.trim())) {
+      errors.email = 'Please enter a valid email address.';
+    }
+
+    if (!values.subject.trim()) {
+      errors.subject = 'Subject is required.';
+    }
+
+    if (!values.message.trim()) {
+      errors.message = 'Message is required.';
+    }
+
+    return errors;
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setSubmitStatus('idle');
+    setFeedbackMessage('');
+
+    const validationErrors = validateForm(formData);
+    if (Object.keys(validationErrors).length > 0) {
+      setFormErrors(validationErrors);
+      setSubmitStatus('error');
+      setFeedbackMessage('Please correct the highlighted fields before resubmitting.');
+      return;
+    }
+
     setIsSubmitting(true);
-    
-    // Simulate form submission (replace with actual API call)
+    setFormErrors({});
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      let data: ContactResponse | null = null;
+
+      try {
+        data = await response.json();
+      } catch {
+        // ignore JSON parsing errors and fall back to status handling below
+      }
+
+      if (!response.ok || !data?.success) {
+        throw new Error(data?.error ?? 'Something went wrong, please try again.');
+      }
+
       setSubmitStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      setFeedbackMessage("Thank you! Your message has been sent successfully. I'll get back to you soon.");
+      setFormData(initialFormState);
     } catch (error) {
       setSubmitStatus('error');
+      setFeedbackMessage(
+        error instanceof Error
+          ? error.message
+          : 'Sorry, there was an error sending your message. Please try again later.'
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -66,14 +166,20 @@ const Contact = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'rajdeep.sah@example.com',
-      link: 'mailto:rajdeep.sah@example.com'
+      value: 'rajdeepofficialework@gmail.com',
+      link: 'mailto:rajdeepofficialework@gmail.com'
+    },
+    {
+      icon: Mail,
+      label: 'University Email',
+      value: 'Rajdeep.sah@washburn.edu',
+      link: 'mailto:Rajdeep.sah@washburn.edu'
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '+1 (555) 123-4567',
-      link: 'tel:+15551234567'
+      value: '+1 785 730 1643',
+      link: 'tel:+17857301643'
     },
     {
       icon: MapPin,
@@ -87,20 +193,32 @@ const Contact = () => {
     {
       icon: Github,
       label: 'GitHub',
-      link: 'https://github.com/rajdeepsah',
+      link: 'https://github.com/RajdeepSah',
       color: 'hover:text-[var(--accent)]'
     },
     {
       icon: Linkedin,
       label: 'LinkedIn',
-      link: 'https://linkedin.com/in/rajdeepsah',
+      link: 'https://www.linkedin.com/in/rajdeep-sah-0a5363204/',
       color: 'hover:text-[var(--accent-strong)]'
     },
     {
       icon: Twitter,
-      label: 'Twitter',
-      link: 'https://twitter.com/rajdeepsah',
+      label: 'X (Twitter)',
+      link: 'https://x.com/RajdeepShah_',
       color: 'hover:text-[var(--accent-strong)]'
+    },
+    {
+      icon: Facebook,
+      label: 'Facebook',
+      link: 'https://www.facebook.com/rajdeeptherd',
+      color: 'hover:text-blue-400'
+    },
+    {
+      icon: Instagram,
+      label: 'Instagram',
+      link: 'https://www.instagram.com/rajdeepshah_/',
+      color: 'hover:text-pink-400'
     }
   ];
 
@@ -118,9 +236,9 @@ const Contact = () => {
             <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
               Get In Touch
             </h2>
-            <p className="text-xl text-secondary max-w-3xl mx-auto">
-              I'm always interested in discussing new opportunities, collaborations, 
-              and innovative projects. Let's connect and explore how we can work together.
+              <p className="text-xl text-secondary max-w-3xl mx-auto">
+                I&rsquo;m always interested in discussing new opportunities, collaborations, 
+                and innovative projects. Let&rsquo;s connect and explore how we can work together.
             </p>
           </motion.div>
 
@@ -190,8 +308,8 @@ const Contact = () => {
                     Currently Available
                   </h4>
                 </div>
-                <p className="text-secondary text-sm">
-                  I'm currently open to new opportunities, collaborations, and interesting projects. 
+                  <p className="text-secondary text-sm">
+                    I&rsquo;m currently open to new opportunities, collaborations, and interesting projects. 
                   Feel free to reach out!
                 </p>
               </div>
@@ -208,7 +326,7 @@ const Contact = () => {
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-muted mb-2">
                         Name *
@@ -216,13 +334,20 @@ const Contact = () => {
                       <input
                         type="text"
                         id="name"
-                        name="name"
+                          name="name"
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-soft rounded-lg focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent bg-surface text-primary placeholder:text-muted transition-colors duration-200"
+                          aria-invalid={Boolean(formErrors.name)}
+                          aria-describedby="name-error"
+                          className="w-full px-4 py-3 border border-soft rounded-lg focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent bg-surface text-primary placeholder:text-muted transition-colors duration-200"
                         placeholder="Your name"
                       />
+                        {formErrors.name && (
+                          <p id="name-error" className="mt-2 text-sm text-red-400">
+                            {formErrors.name}
+                          </p>
+                        )}
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-muted mb-2">
@@ -232,12 +357,19 @@ const Contact = () => {
                         type="email"
                         id="email"
                         name="email"
-                        value={formData.email}
+                          value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-soft rounded-lg focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent bg-surface text-primary placeholder:text-muted transition-colors duration-200"
+                          aria-invalid={Boolean(formErrors.email)}
+                          aria-describedby="email-error"
+                          className="w-full px-4 py-3 border border-soft rounded-lg focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent bg-surface text-primary placeholder:text-muted transition-colors duration-200"
                         placeholder="your.email@example.com"
                       />
+                        {formErrors.email && (
+                          <p id="email-error" className="mt-2 text-sm text-red-400">
+                            {formErrors.email}
+                          </p>
+                        )}
                     </div>
                   </div>
 
@@ -248,13 +380,20 @@ const Contact = () => {
                     <input
                       type="text"
                       id="subject"
-                      name="subject"
+                        name="subject"
                       value={formData.subject}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-soft rounded-lg focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent bg-surface text-primary placeholder:text-muted transition-colors duration-200"
+                        aria-invalid={Boolean(formErrors.subject)}
+                        aria-describedby="subject-error"
+                        className="w-full px-4 py-3 border border-soft rounded-lg focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent bg-surface text-primary placeholder:text-muted transition-colors duration-200"
                       placeholder="What's this about?"
                     />
+                      {formErrors.subject && (
+                        <p id="subject-error" className="mt-2 text-sm text-red-400">
+                          {formErrors.subject}
+                        </p>
+                      )}
                   </div>
 
                   <div>
@@ -264,13 +403,20 @@ const Contact = () => {
                     <textarea
                       id="message"
                       name="message"
-                      value={formData.message}
+                        value={formData.message}
                       onChange={handleInputChange}
                       required
                       rows={6}
-                      className="w-full px-4 py-3 border border-soft rounded-lg focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent bg-surface text-primary placeholder:text-muted transition-colors duration-200 resize-none"
+                        aria-invalid={Boolean(formErrors.message)}
+                        aria-describedby="message-error"
+                        className="w-full px-4 py-3 border border-soft rounded-lg focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent bg-surface text-primary placeholder:text-muted transition-colors duration-200 resize-none"
                       placeholder="Tell me about your project or opportunity..."
                     />
+                      {formErrors.message && (
+                        <p id="message-error" className="mt-2 text-sm text-red-400">
+                          {formErrors.message}
+                        </p>
+                      )}
                   </div>
 
                   <motion.button
@@ -293,23 +439,23 @@ const Contact = () => {
                     )}
                   </motion.button>
 
-                  {submitStatus === 'success' && (
+                    {submitStatus === 'success' && feedbackMessage && (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       className="p-4 rounded-lg text-sm bg-emerald-500/10 text-emerald-400"
                     >
-                      Thank you! Your message has been sent successfully. I'll get back to you soon.
+                        {feedbackMessage}
                     </motion.div>
                   )}
 
-                  {submitStatus === 'error' && (
+                    {submitStatus === 'error' && feedbackMessage && (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       className="p-4 rounded-lg text-sm bg-red-500/10 text-red-400"
                     >
-                      Sorry, there was an error sending your message. Please try again or contact me directly.
+                        {feedbackMessage}
                     </motion.div>
                   )}
                 </form>
