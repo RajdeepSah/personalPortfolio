@@ -86,16 +86,16 @@ const Hero = () => {
               <Download className="mr-2" size={20} />
               View Resume
             </motion.a>
-            
+
             <motion.a
-              href="/contact"
+              href="/projects"
               variants={buttonVariants}
               whileHover="hover"
               whileTap="tap"
               className="inline-flex items-center px-8 py-3 btn-outline-premium font-medium"
             >
               <Mail className="mr-2" size={20} />
-              Contact Me
+              Explore Projects
             </motion.a>
           </motion.div>
 
