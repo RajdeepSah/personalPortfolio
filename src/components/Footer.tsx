@@ -11,25 +11,25 @@ const Footer = () => {
     {
       icon: Github,
       label: 'GitHub',
-      link: 'https://github.com/rajdeepsah',
+      link: 'https://github.com/RajdeepSah',
       color: 'hover:text-[var(--accent)]'
     },
     {
       icon: Linkedin,
       label: 'LinkedIn',
-      link: 'https://linkedin.com/in/rajdeepsah',
+      link: 'https://www.linkedin.com/in/rajdeep-sah-0a5363204/',
       color: 'hover:text-[var(--accent-strong)]'
     },
     {
       icon: Twitter,
       label: 'Twitter',
-      link: 'https://twitter.com/rajdeepsah',
+      link: 'https://x.com/RajdeepShah_',
       color: 'hover:text-[var(--accent-strong)]'
     },
     {
       icon: Mail,
       label: 'Email',
-      link: 'mailto:rajdeep.sah@example.com',
+      link: 'mailto:rajdeepofficialework@gmail.com',
       color: 'hover:text-[var(--accent)]'
     }
   ];
@@ -99,12 +99,12 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="text-lg font-semibold text-primary">Get In Touch</h4>
             <div className="space-y-2 text-muted">
-              <p>rajdeep.sah@example.com</p>
-              <p>+1 (555) 123-4567</p>
+              <p>rajdeepofficialework@gmail.com</p>
+              <p>+1 (785) 730-1643</p>
               <p>Topeka, Kansas, USA</p>
             </div>
             <motion.a
-              href="mailto:rajdeep.sah@example.com"
+              href="mailto:rajdeepofficialework@gmail.com"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-flex items-center px-4 py-2 btn-premium text-sm font-medium gap-2"
@@ -125,7 +125,7 @@ const Footer = () => {
               className="text-muted text-sm flex items-center mt-4 md:mt-0"
               whileHover={{ scale: 1.05 }}
             >
-              Made with <Heart className="w-4 h-4 text-red-500 mx-1" /> using Next.js & TailwindCSS
+              Made using Next.js & TailwindCSS
             </motion.p>
           </div>
         </div>
