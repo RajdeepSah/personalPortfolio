@@ -2,6 +2,78 @@
 
 import { useEffect, useRef } from 'react';
 
+type ThemePalette = {
+  accent: string;
+  accentStrong: string;
+  accentMuted: string;
+  foreground: string;
+  background: string;
+};
+
+const defaultPalette: ThemePalette = {
+  accent: '#7a5afa',
+  accentStrong: '#2dd4bf',
+  accentMuted: 'rgba(122, 90, 250, 0.35)',
+  foreground: '#0f172a',
+  background: '#f4f7fb',
+};
+
+const hexToRgb = (hex: string) => {
+  let sanitized = hex.replace('#', '').trim();
+  if (sanitized.length === 3) {
+    sanitized = sanitized
+      .split('')
+      .map((char) => `${char}${char}`)
+      .join('');
+  }
+
+  const bigint = parseInt(sanitized, 16);
+  const r = (bigint >> 16) & 255;
+  const g = (bigint >> 8) & 255;
+  const b = bigint & 255;
+
+  return { r, g, b };
+};
+
+const applyAlpha = (color: string, alpha: number) => {
+  const trimmed = color.trim();
+  if (!trimmed) return `rgba(255, 255, 255, ${alpha})`;
+
+  if (trimmed.startsWith('#')) {
+    const { r, g, b } = hexToRgb(trimmed);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  }
+
+  if (trimmed.startsWith('rgb')) {
+    const parts = trimmed
+      .replace(/rgba?\(/, '')
+      .replace(')', '')
+      .split(',')
+      .map((value) => parseFloat(value.trim()));
+    const [r, g, b] = parts;
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  }
+
+  return trimmed;
+};
+
+const getThemePalette = (): ThemePalette => {
+  if (typeof window === 'undefined') return defaultPalette;
+  const styles = getComputedStyle(document.documentElement);
+
+  return {
+    accent: styles.getPropertyValue('--accent').trim() || defaultPalette.accent,
+    accentStrong:
+      styles.getPropertyValue('--accent-strong').trim() || defaultPalette.accentStrong,
+    accentMuted:
+      styles.getPropertyValue('--accent-muted').trim() || defaultPalette.accentMuted,
+    foreground:
+      styles.getPropertyValue('--text-primary').trim() || defaultPalette.foreground,
+    background:
+      styles.getPropertyValue('--background').trim() || defaultPalette.background,
+  };
+};
+
 const MathBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -12,6 +84,7 @@ const MathBackground = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    let palette = getThemePalette();
     let width = window.innerWidth;
     let height = window.innerHeight;
     let animationFrameId: number;
@@ -43,9 +116,9 @@ const MathBackground = () => {
         char,
         baseX: Math.random() * width,
         baseY: Math.random() * height,
-        drift: 40 + Math.random() * 60,
-        size: 16 + Math.random() * 10,
-        speed: 0.2 + Math.random() * 0.35,
+        drift: 35 + Math.random() * 70,
+        size: 20 + Math.random() * 14,
+        speed: 0.22 + Math.random() * 0.35,
       }));
 
     const createNodePoints = (): NodePoint[] =>
@@ -61,48 +134,52 @@ const MathBackground = () => {
     let symbolParticles: SymbolParticle[] = [];
     let nodePoints: NodePoint[] = [];
 
-    const regenerateScene = () => {
-      symbolParticles = createSymbolParticles();
-      nodePoints = createNodePoints();
-    };
+      const regenerateScene = () => {
+        symbolParticles = createSymbolParticles();
+        nodePoints = createNodePoints();
+      };
 
-    const resizeCanvas = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
+      const refreshPalette = () => {
+        palette = getThemePalette();
+      };
 
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.style.width = `${width}px`;
-      canvas.style.height = `${height}px`;
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
+      const resizeCanvas = () => {
+        width = window.innerWidth;
+        height = window.innerHeight;
 
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      regenerateScene();
-    };
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
 
-    const drawGradient = () => {
-      ctx.save();
-      const linear = ctx.createLinearGradient(0, 0, width, height);
-      linear.addColorStop(0, 'rgba(59, 130, 246, 0.08)');
-      linear.addColorStop(1, 'rgba(14, 165, 233, 0.02)');
-      ctx.fillStyle = linear;
-      ctx.fillRect(0, 0, width, height);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        regenerateScene();
+      };
 
-      const radius = Math.max(width, height);
-      const radial = ctx.createRadialGradient(
-        width * 0.5,
-        height * 0.5,
-        radius * 0.1,
-        width * 0.5,
-        height * 0.5,
-        radius * 0.8
-      );
-      radial.addColorStop(0, 'rgba(56, 189, 248, 0.08)');
-      radial.addColorStop(1, 'transparent');
-      ctx.fillStyle = radial;
-      ctx.fillRect(0, 0, width, height);
-      ctx.restore();
-    };
+      const drawGradient = () => {
+        ctx.save();
+        const linear = ctx.createLinearGradient(0, 0, width, height);
+        linear.addColorStop(0, applyAlpha(palette.accent, 0.22));
+        linear.addColorStop(1, applyAlpha(palette.accentStrong, 0.08));
+        ctx.fillStyle = linear;
+        ctx.fillRect(0, 0, width, height);
+
+        const radius = Math.max(width, height);
+        const radial = ctx.createRadialGradient(
+          width * 0.5,
+          height * 0.5,
+          radius * 0.1,
+          width * 0.5,
+          height * 0.5,
+          radius * 0.8
+        );
+        radial.addColorStop(0, applyAlpha(palette.accentStrong, 0.18));
+        radial.addColorStop(1, 'transparent');
+        ctx.fillStyle = radial;
+        ctx.fillRect(0, 0, width, height);
+        ctx.restore();
+      };
 
     const drawWaves = () => {
       ctx.save();
@@ -129,8 +206,10 @@ const MathBackground = () => {
           }
         }
 
-        ctx.strokeStyle = `rgba(59, 130, 246, ${0.16 - i * 0.02})`;
-        ctx.lineWidth = 1.2 - i * 0.1;
+        ctx.strokeStyle = applyAlpha(palette.accent, 0.32 - i * 0.05);
+        ctx.lineWidth = 1.6 - i * 0.2;
+        ctx.shadowColor = applyAlpha(palette.accentStrong, 0.35);
+        ctx.shadowBlur = 22 - i * 3;
         ctx.stroke();
       }
 
@@ -139,9 +218,11 @@ const MathBackground = () => {
 
     const drawNodeGrid = () => {
       ctx.save();
-      ctx.lineWidth = 0.4;
-      ctx.strokeStyle = 'rgba(14, 165, 233, 0.12)';
-      ctx.fillStyle = 'rgba(96, 165, 250, 0.45)';
+      ctx.lineWidth = 0.75;
+      ctx.strokeStyle = applyAlpha(palette.accentStrong, 0.25);
+      ctx.fillStyle = applyAlpha(palette.accent, 0.55);
+      ctx.shadowColor = applyAlpha(palette.accent, 0.35);
+      ctx.shadowBlur = 12;
 
       nodePoints.forEach((point, index) => {
         const oscillationX = Math.sin(time * point.speed + point.offset) * point.stretch;
@@ -175,7 +256,9 @@ const MathBackground = () => {
       ctx.save();
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillStyle = 'rgba(191, 219, 254, 0.9)';
+      ctx.fillStyle = applyAlpha(palette.accentStrong, 0.95);
+      ctx.shadowColor = applyAlpha(palette.accent, 0.65);
+      ctx.shadowBlur = 18;
 
       symbolParticles.forEach((particle, index) => {
         const x = (particle.baseX + time * 50 * particle.speed + width) % width;
@@ -183,7 +266,7 @@ const MathBackground = () => {
           (particle.baseY + Math.sin(time * particle.speed + index) * particle.drift + height) %
           height;
 
-        ctx.globalAlpha = 0.25;
+        ctx.globalAlpha = 0.35;
         ctx.font = `${particle.size}px "IBM Plex Mono", "Space Grotesk", "SFMono-Regular", ui-monospace`;
         ctx.fillText(particle.char, x, y);
       });
@@ -208,10 +291,19 @@ const MathBackground = () => {
     resizeCanvas();
     animationFrameId = requestAnimationFrame(render);
     window.addEventListener('resize', resizeCanvas);
+    const observer =
+      typeof MutationObserver !== 'undefined'
+        ? new MutationObserver(() => {
+            refreshPalette();
+          })
+        : null;
+
+    observer?.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', resizeCanvas);
+      observer?.disconnect();
     };
   }, []);
 
@@ -222,8 +314,8 @@ const MathBackground = () => {
       className="pointer-events-none fixed inset-0 select-none"
       style={{
         background: 'transparent',
-        mixBlendMode: 'screen',
-        opacity: 0.75,
+        mixBlendMode: 'soft-light',
+        opacity: 0.9,
       }}
     />
   );
