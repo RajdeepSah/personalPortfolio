@@ -30,64 +30,136 @@ const Experience = () => {
   const experiences = [
     {
       type: 'professional',
-      title: 'AI/ML Engineer',
-      company: 'Current Position',
-      location: 'Remote',
-      period: '2024 - Present',
+      title: 'Community Management Intern',
+      company: 'Walgreens',
+      location: 'Topeka, KS',
+      period: 'May 2025 - Present',
       description: 'Leading AI/ML initiatives and developing cutting-edge machine learning solutions for various industries.',
       achievements: [
-        'Developed and deployed ML models with 95%+ accuracy',
-        'Led cross-functional teams of 5+ engineers',
-        'Implemented AI solutions reducing operational costs by 30%',
-        'Mentored junior developers and data scientists'
+        ' Streamlined operations for 20+ associates,',
+        'optimized scheduling',
+        'cut labor costs by 10%',
+        ' reduced shrink by 66%',
+        ' delivered exceptional service across 250+ weekly customer interactions',
+        ' boosting community engagement through wellness initiatives'
       ],
-      skills: ['Python', 'TensorFlow', 'PyTorch', 'AWS', 'Docker', 'Kubernetes']
+      skills: [ 'Adaptable', 'Organized', 'Detail-Oriented', 'Strategic Planner', 'Leadership & Teamwork', 'Problem Solver']
     },
     {
-      type: 'internship',
-      title: 'Research Assistant',
-      company: 'Washburn University',
+      type: 'New Church Development Summer Internship',
+      title: 'NCD Research Intern',
+      company: 'Great Plains Annual Conference, UMC',
       location: 'Topeka, KS',
-      period: '2023 - 2024',
+      period: 'May 2024 - Aug 2024',
       description: 'Conducted research in Generative AI applications in higher education and contributed to academic publications.',
       achievements: [
-        'Published research paper on Generative AI in Higher Education',
-        'Presented findings at IACIS conference',
-        'Collaborated with faculty on multiple research projects',
-        'Mentored undergraduate students in AI/ML concepts'
+        'Utilized BrickRiver software to analyze church development data for strategic planning,',
+        ' conducted financial modeling and budget forecasting to optimize resources',
+        'developed the NCD website with content workflows, donation integration, and a seamless user experience',
       ],
-      skills: ['Research', 'Academic Writing', 'Data Analysis', 'Python', 'R', 'LaTeX']
+      skills: ['Research', 'BrickRiver','Web development','Academic Writing', 'Data Analysis', 'LaTeX']
     },
     {
-      type: 'leadership',
-      title: 'Event Organizer & Hackathon Coordinator',
-      company: 'University Tech Events',
-      location: 'Campus',
-      period: '2022 - 2024',
-      description: 'Organized and coordinated multiple technology events, hackathons, and workshops for the university community.',
+      type: 'Academic Professional Experience',
+      title: ' Mathematics and Statistics Tutor',
+      company: 'Washburn University',
+      location: 'Topeka, KS',
+      period: 'Sept 2023 - Present',
+      description: 'Provided tutoring in Statistics, Logic, Functions, Vectors, Trigonometry, Advanced Algebra, and Calculus, helping students develop problem-solving skills and achieve academic success.',
       achievements: [
-        'Organized 10+ successful hackathons with 200+ participants',
-        'Coordinated tech workshops and seminars',
-        'Managed event logistics and vendor relationships',
-        'Increased event participation by 150%'
+        'Improved student performance through clear explanations and guided practice'
       ],
-      skills: ['Event Management', 'Leadership', 'Public Speaking', 'Project Management']
+      skills: ['Statistics', 'Logic', 'Functions', 'Vectors', 'Trigonometry', 'Advanced Algebra', 'Calculus','Problem-Solving', 'Real Analysis']
     },
     {
-      type: 'leadership',
-      title: 'Student Organization President',
-      company: 'Computer Science Society',
-      location: 'University',
-      period: '2021 - 2023',
-      description: 'Led the Computer Science Society, organizing events, workshops, and fostering a community of tech enthusiasts.',
+      type: 'Academic Professional Experience',
+      title: 'Computer Information Science Tutor',
+      company: 'Washburn University',
+      location: 'Topeka, KS',  
+      period: 'Dec 2024 - Present',
+      description: 'Tutored students in programming (C, Java, Python), data structures, algorithms, operating systems, networking, cybersecurity, and databases, while supporting learning in software engineering, AI/ML, and discrete mathematics, and guiding them through high-level CS projects with design, implementation, and debugging support.',
       achievements: [
-        'Grew membership from 50 to 200+ students',
-        'Organized coding competitions and tech talks',
-        'Established partnerships with local tech companies',
-        'Created mentorship program for new students'
+        'Simplified complex CS concepts and supported students in programming, debugging, and project development.'
       ],
-      skills: ['Leadership', 'Community Building', 'Strategic Planning', 'Team Management']
+      skills: ['Programming lang(C, Java, Python)', 'data structures', 'algorithms', 'operating systems', 'networking', 'cybersecurity',  'databases']
+    },
+
+
+    {
+      type: 'Academic Professional Experience',
+      title: 'Peer Educator',
+      company: 'Washburn University',
+      location: 'Topeka, KS',  
+      period: 'Aug 2024 - Present',
+      description: 'Mentored students through academic support, peer counseling, and career guidance workshops while promoting campus engagement and collaborating with faculty to enhance student success and the overall university experience.',
+      achievements: [
+        'Led academic workshops and mentored students to boost confidence and engagement.'
+      ],
+      skills: ['Mentoring', 'Leadership', 'Counseling', 'Communication', 'Engagement', 'Support',  'Networking']
+    },
+
+    {
+      type: 'Academic Professional Experience',
+      title: 'Student Ambassador',
+      company: 'Washburn University',
+      location: 'Topeka, KS',  
+      period: '| May 2025 – Present',
+      description: 'Tutored students in programming (C, Java, Python), data structures, algorithms, operating systems, networking, cybersecurity, and databases, while supporting learning in software engineering, AI/ML, and discrete mathematics, and guiding them through high-level CS projects with design, implementation, and debugging support.',
+      achievements: [
+        'Guided new students through campus tours, academic tools, and orientation support.'
+      ],
+      skills: ['Programming lang(C, Java, Python)', 'data structures', 'algorithms', 'operating systems', 'networking', 'cybersecurity',  'databases']
+    },
+    /*
+    {
+      type: 'Academic Professional Experience',
+      title: 'Student Ambassador',
+      company: 'Washburn University',
+      location: 'Topeka, KS',  
+      period: '| May 2025 – Present',
+      description: 'Guided new and prospective students through campus tours, academic tools, and registration support while fostering an inclusive community through mentorship, event assistance, and connecting students to essential university resources.',
+      achievements: [
+        'Improved student performance through clear explanations and guided practice'
+      ],
+      skills: ['Leadership', 'Outreach', 'Networking', 'Engagement', 'Communication', 'Communication']
+    },*/
+    {
+      type: 'Academic Professional Experience',
+      title: 'Tutor/ Mentor – Upper Bound (TRIO Program)',
+      company: 'Washburn University',
+      location: 'Topeka, KS',  
+      period: 'Dec 2024 - Present',
+      description: 'Tutored high school students in math, science, and writing while mentoring them on college readiness, personal development, and academic confidence, and helping lead workshops on study skills, time management, financial aid, and cultural awareness.',
+      achievements: [
+        'Mentored students in study skills, goal-setting, and academic confidence'
+      ],
+      skills: ['Mentoring', 'Leadership', 'Counseling', 'Communication', 'Engagement', 'Support',  'Networking']
+    },
+    {
+      type: 'Academic Professional Experience',
+      title: 'Content Story Writer',
+      company: 'Washburn University',
+      location: 'Topeka, KS',  
+      period: 'Sep 2023 - Aug 2024',
+      description: '●	Produced campus stories under tight deadlines, strengthening communication and storytelling skills.',
+      achievements: [
+        'Produced campus stories under strict deadlines with clear, engaging writing.'
+      ],
+      skills: ['Writing', 'Research', 'Storytelling', 'Communication']
+    },
+    {
+      type: 'Academic Professional Experience',
+      title: 'Office Assistant',
+      company: 'Mathematics & Statistics Department, Washburn University',
+      location: 'Topeka, KS',  
+      period: 'Nov 2023 - Dec 2024',
+      description: 'Provided administrative support, event coordination, and inventory management.',
+      achievements: [
+        'Improved departmental operations by managing administrative tasks.'
+      ],
+      skills: ['Administration', 'Coordination', 'Scheduling', 'Management', 'Multitasking', 'Organization']
     }
+
   ];
 
   const getTypeIcon = (type: string) => {

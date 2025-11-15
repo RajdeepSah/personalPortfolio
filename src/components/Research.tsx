@@ -84,16 +84,16 @@ const researchAreas = [
 
   const upcomingResearch = [
     {
-      title: "Federated Learning in Healthcare: Privacy-Preserving AI for Medical Diagnosis",
+      title: "Turtle Temperature Data Mining & Environmental Modeling",
       status: "In Progress",
       expectedCompletion: "2025",
-      description: "Investigating federated learning approaches for medical diagnosis while maintaining patient privacy and data security."
+      description: "Analyzing long-term temperature sensor data from aquatic turtles to develop predictive models for environmental patterns, habitat conditions, and climate-driven behavioral changes. This project uses data mining, statistical modeling, and machine learning to interpret irregular time-series data and forecast ecological trends."
     },
     {
-      title: "Quantum Machine Learning: Applications in Financial Modeling",
+      title: "Blockchain-Ready Secure Voting System (BlockBallot)",
       status: "Planning",
       expectedCompletion: "2025",
-      description: "Exploring quantum computing applications in machine learning for enhanced financial risk assessment and modeling."
+      description: "Designing a scalable, secure digital voting platform with a modular architecture that can integrate blockchain-based audit trails in future versions. The system focuses on cryptographic security, verifiable logs, and user authentication to support transparent and tamper-resistant elections."
     }
   ];
 

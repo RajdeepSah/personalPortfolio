@@ -22,27 +22,83 @@ const Leadership = () => {
 
   const roles = [
     {
-      title: 'Student Organization President',
-      org: 'Computer Science Society',
-      location: 'University',
-      period: '2021 - 2023',
+      title: 'President of Club Mathematica',
+      org: 'Mathematics and Statistics Department',
+      location: 'Washburn University',
+      period: '2025 - 2026',
       highlights: [
-        'Grew membership from 50 to 200+ students',
-        'Organized coding competitions and tech talks',
-        'Established partnerships with local tech companies'
+        'Directed club operations and fostered student research by organizing math-focused workshops, faculty-led talks, and academic conference participation.'
+      ]
+    },
+
+    {
+      title: 'ByteBods President',
+      org: 'Computer Science Club',
+      location: 'Washburn University',
+      period: '2024 - 2025',
+      highlights: [
+        'Led initiatives in technology and coding, including hackathons, coding competitions, industry speaker events, and professional development workshops.'
       ]
     },
     {
-      title: 'Hackathon Coordinator',
-      org: 'University Tech Events',
-      location: 'Campus',
-      period: '2022 - 2024',
+      title: 'Programming Competition Participant',
+      org: 'CCSC Central Plains',
+      location: 'Central Plain Region, USA',
+      period: 'April 2025',
       highlights: [
-        'Organized 10+ successful hackathons',
-        'Managed 200+ participants events',
-        'Secured sponsorships and speakers'
+        'Competed at the 31st Annual CCSC Central Plains Conference',
+        'secured top 4 position out of 21 teams'
+      ]
+    },
+    {
+      title: 'Mathematics Competition Participant',
+      org: 'Kansas Section of the Mathematical Association of America (KSMAA)',
+      location: 'Washburn University',
+      period: 'March 2024',
+      highlights: [
+        'Represented Washburn University at the KSMAA Mathematics Competition'
+      ]
+    },
+        {
+      title: 'Hack Midwest Hackathon',
+      org: 'Hack Midwest',
+      location: 'Kansas City, MO ',
+      period: 'Oct 2025',
+      highlights: [
+        'Built Listify AI, a campus marketplace for buying and selling new or second-hand items',
+        'Developed using MongoDB, AWS, React, Python, stablecoin integration, and the Brale API',
+        'Competed head-to-head with professional software developers and graduate student teams'
+      ]
+    },
+    {
+      title: ' Sports Event Coordinator',
+      org: 'Ichabod Cricket Club (ICC)',
+      location: 'Topeka, KS, USA',
+      period: 'Oct 2024',
+      highlights: [
+        'Organized and executed a multi-university cricket tournament, overseeing logistics, scheduling, sponsorship, and large-scale event promotion.'
+      ]
+    },
+    {
+      title: 'Shawnee County Tech Guild Member',
+      org: 'Shawnee County Tech Guild',
+      location: 'Kansas, USA',
+      period: '2025 - Present',
+      highlights: [
+        ' Contributed to community outreach and guild engagement through idea presentations, active collaboration, and winning the solo tech trivia competition.'
+      ]
+    },
+    
+    {
+      title: 'Presenter - Apeiron Research Symposium ',
+      org: 'Computer Information Science Department, Washburn University',
+      location: 'Kansas, USA',
+      period: 'May 2025',
+      highlights: [
+        ' ●	Delivered a research presentation on the impact of generative AI in higher education at Washburn University’s annual symposium.'
       ]
     }
+
   ];
 
   return (
