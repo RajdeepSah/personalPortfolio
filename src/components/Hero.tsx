@@ -1,10 +1,10 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { Download, Mail, Github, Linkedin, Twitter } from 'lucide-react';
 
 const Hero = () => {
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -15,7 +15,7 @@ const Hero = () => {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
@@ -27,8 +27,8 @@ const Hero = () => {
     }
   };
 
-  const buttonVariants = {
-    hover: { 
+  const buttonVariants: Variants = {
+    hover: {
       scale: 1.05,
       transition: { duration: 0.2 }
     },
