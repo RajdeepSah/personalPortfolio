@@ -154,7 +154,7 @@ const certifications = [
                         </h3>
                         
                         <p className="text-lg font-semibold text-[var(--accent)] mb-2">
-                          {item.institution || item.company}
+                          {item.institution}
                         </p>
                         
                         <p className="text-secondary mb-4">
