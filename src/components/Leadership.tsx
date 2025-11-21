@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { cubicBezier, motion } from 'framer-motion';
 import { Users, Trophy, Calendar, MapPin } from 'lucide-react';
 
 const Leadership = () => {
@@ -17,7 +17,7 @@ const Leadership = () => {
 
   const itemVariants = {
     hidden: { y: 16, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } }
+    visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: cubicBezier(0.25, 0.1, 0.25, 1) } }
   };
 
   const roles = [

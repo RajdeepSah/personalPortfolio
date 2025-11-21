@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { cubicBezier, motion } from 'framer-motion';
 import {
   Mail,
   Phone,
@@ -64,7 +64,7 @@ const Contact = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: [0.25, 0.1, 0.25, 1]
+        ease: cubicBezier(0.25, 0.1, 0.25, 1)
       }
     }
   };
