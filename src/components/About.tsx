@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { cubicBezier, easeOut, motion } from "framer-motion";
-import { Download, GraduationCap, Briefcase, Award } from "lucide-react";
+import { cubicBezier, motion } from "framer-motion";
+import { Download, GraduationCap } from "lucide-react";
 
 const About = () => {
   const containerVariants = {
