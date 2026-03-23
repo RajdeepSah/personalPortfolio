@@ -94,6 +94,7 @@ const About = () => {
                     src="/profile.jpg"
                     alt="Rajdeep Sah"
                     fill
+                    priority
                     style={{ objectFit: "cover", objectPosition: "top" }}
                   />
                 </div>
@@ -224,6 +225,7 @@ const About = () => {
                               src="/profile.jpg"
                               alt="Rajdeep Sah"
                               fill
+                              priority
                               style={{
                                 objectFit: "cover",
                                 objectPosition: "top",

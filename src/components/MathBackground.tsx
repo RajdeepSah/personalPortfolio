@@ -9,6 +9,12 @@ const MathBackground = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    // Respect user's reduced-motion preference
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (prefersReducedMotion) return;
+
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
@@ -24,6 +30,7 @@ const MathBackground = () => {
     const amplitude = 50;
     const frequency = 0.01;
     let time = 0;
+    let animationFrameId: number;
 
     // Animation loop
     const animate = () => {
@@ -86,13 +93,14 @@ const MathBackground = () => {
       }
 
       time += 0.5;
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
     };
 
     animate();
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 

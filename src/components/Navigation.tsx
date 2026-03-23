@@ -33,12 +33,14 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="text-xl font-bold text-primary"
-          >
-            Rajdeep Sah
-          </motion.div>
+          <Link href="/" aria-label="Rajdeep Sah - Home">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="text-xl font-bold text-primary cursor-pointer"
+            >
+              Rajdeep Sah
+            </motion.div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">

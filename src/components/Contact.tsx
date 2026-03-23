@@ -244,7 +244,7 @@ const Contact = () => {
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
-              Get In Touch
+              Let’s build something intentional.
             </h2>
             <p className="text-xl text-secondary max-w-3xl mx-auto">
               I&rsquo;m always interested in discussing new opportunities,
@@ -334,7 +334,7 @@ const Contact = () => {
                 <div className="flex items-center mb-6">
                   <MessageCircle className="w-6 h-6 text-[var(--accent)] mr-3" />
                   <h3 className="text-2xl font-bold text-primary">
-                    Send a Message
+                    Initiate Collaboration?
                   </h3>
                 </div>
 
