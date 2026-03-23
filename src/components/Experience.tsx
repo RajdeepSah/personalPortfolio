@@ -1,7 +1,14 @@
-'use client';
+"use client";
 
-import { cubicBezier, motion } from 'framer-motion';
-import { Briefcase, Users, Trophy, Calendar, MapPin, Building } from 'lucide-react';
+import { cubicBezier, motion } from "framer-motion";
+import {
+  Briefcase,
+  Users,
+  Trophy,
+  Calendar,
+  MapPin,
+  Building,
+} from "lucide-react";
 
 const Experience = () => {
   const containerVariants = {
@@ -10,9 +17,9 @@ const Experience = () => {
       opacity: 1,
       transition: {
         delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
@@ -22,93 +29,146 @@ const Experience = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: cubicBezier(0.25, 0.1, 0.25, 1)
-      }
-    }
+        ease: cubicBezier(0.25, 0.1, 0.25, 1),
+      },
+    },
   };
 
   const experiences = [
     {
-      type: 'professional',
-      title: 'Community Management Intern',
-      company: 'Walgreens',
-      location: 'Topeka, KS',
-      period: 'May 2025 - Present',
-      description: 'Leading AI/ML initiatives and developing cutting-edge machine learning solutions for various industries.',
+      type: "professional",
+      title: "Community Management Intern",
+      company: "Walgreens",
+      location: "Topeka, KS",
+      period: "May 2025 - Present",
+      description:
+        "Leading AI/ML initiatives and developing cutting-edge machine learning solutions for various industries.",
       achievements: [
-        ' Streamlined operations for 20+ associates,',
-        'optimized scheduling',
-        'cut labor costs by 10%',
-        ' reduced shrink by 66%',
-        ' delivered exceptional service across 250+ weekly customer interactions',
-        ' boosting community engagement through wellness initiatives'
+        " Streamlined operations for 20+ associates,",
+        "optimized scheduling",
+        "cut labor costs by 10%",
+        " reduced shrink by 66%",
+        " delivered exceptional service across 250+ weekly customer interactions",
+        " boosting community engagement through wellness initiatives",
       ],
-      skills: [ 'Adaptable', 'Organized', 'Detail-Oriented', 'Strategic Planner', 'Leadership & Teamwork', 'Problem Solver']
+      skills: [
+        "Adaptable",
+        "Organized",
+        "Detail-Oriented",
+        "Strategic Planner",
+        "Leadership & Teamwork",
+        "Problem Solver",
+      ],
     },
     {
-      type: 'New Church Development Summer Internship',
-      title: 'NCD Research Intern',
-      company: 'Great Plains Annual Conference, UMC',
-      location: 'Topeka, KS',
-      period: 'May 2024 - Aug 2024',
-      description: 'Conducted research in Generative AI applications in higher education and contributed to academic publications.',
+      type: "New Church Development Summer Internship",
+      title: "NCD Research Intern",
+      company: "Great Plains Annual Conference, UMC",
+      location: "Topeka, KS",
+      period: "May 2024 - Aug 2024",
+      description:
+        "Conducted research in Generative AI applications in higher education and contributed to academic publications.",
       achievements: [
-        'Utilized BrickRiver software to analyze church development data for strategic planning,',
-        ' conducted financial modeling and budget forecasting to optimize resources',
-        'developed the NCD website with content workflows, donation integration, and a seamless user experience',
+        "Utilized BrickRiver software to analyze church development data for strategic planning,",
+        " conducted financial modeling and budget forecasting to optimize resources",
+        "developed the NCD website with content workflows, donation integration, and a seamless user experience",
       ],
-      skills: ['Research', 'BrickRiver','Web development','Academic Writing', 'Data Analysis', 'LaTeX']
+      skills: [
+        "Research",
+        "BrickRiver",
+        "Web development",
+        "Academic Writing",
+        "Data Analysis",
+        "LaTeX",
+      ],
     },
     {
-      type: 'Academic Professional Experience',
-      title: ' Mathematics and Statistics Tutor',
-      company: 'Washburn University',
-      location: 'Topeka, KS',
-      period: 'Sept 2023 - Present',
-      description: 'Provided tutoring in Statistics, Logic, Functions, Vectors, Trigonometry, Advanced Algebra, and Calculus, helping students develop problem-solving skills and achieve academic success.',
+      type: "Academic Professional Experience",
+      title: " Mathematics and Statistics Tutor",
+      company: "Washburn University",
+      location: "Topeka, KS",
+      period: "Sept 2023 - Present",
+      description:
+        "Provided tutoring in Statistics, Logic, Functions, Vectors, Trigonometry, Advanced Algebra, and Calculus, helping students develop problem-solving skills and achieve academic success.",
       achievements: [
-        'Improved student performance through clear explanations and guided practice'
+        "Improved student performance through clear explanations and guided practice",
       ],
-      skills: ['Statistics', 'Logic', 'Functions', 'Vectors', 'Trigonometry', 'Advanced Algebra', 'Calculus','Problem-Solving', 'Real Analysis']
+      skills: [
+        "Statistics",
+        "Logic",
+        "Functions",
+        "Vectors",
+        "Trigonometry",
+        "Advanced Algebra",
+        "Calculus",
+        "Problem-Solving",
+        "Real Analysis",
+      ],
     },
     {
-      type: 'Academic Professional Experience',
-      title: 'Computer Information Science Tutor',
-      company: 'Washburn University',
-      location: 'Topeka, KS',  
-      period: 'Dec 2024 - Present',
-      description: 'Tutored students in programming (C, Java, Python), data structures, algorithms, operating systems, networking, cybersecurity, and databases, while supporting learning in software engineering, AI/ML, and discrete mathematics, and guiding them through high-level CS projects with design, implementation, and debugging support.',
+      type: "Academic Professional Experience",
+      title: "Computer Information Science Tutor",
+      company: "Washburn University",
+      location: "Topeka, KS",
+      period: "Dec 2024 - Present",
+      description:
+        "Tutored students in programming (C, Java, Python), data structures, algorithms, operating systems, networking, cybersecurity, and databases, while supporting learning in software engineering, AI/ML, and discrete mathematics, and guiding them through high-level CS projects with design, implementation, and debugging support.",
       achievements: [
-        'Simplified complex CS concepts and supported students in programming, debugging, and project development.'
+        "Simplified complex CS concepts and supported students in programming, debugging, and project development.",
       ],
-      skills: ['Programming lang(C, Java, Python)', 'data structures', 'algorithms', 'operating systems', 'networking', 'cybersecurity',  'databases']
+      skills: [
+        "Programming lang(C, Java, Python)",
+        "data structures",
+        "algorithms",
+        "operating systems",
+        "networking",
+        "cybersecurity",
+        "databases",
+      ],
     },
 
-
     {
-      type: 'Academic Professional Experience',
-      title: 'Peer Educator',
-      company: 'Washburn University',
-      location: 'Topeka, KS',  
-      period: 'Aug 2024 - Present',
-      description: 'Mentored students through academic support, peer counseling, and career guidance workshops while promoting campus engagement and collaborating with faculty to enhance student success and the overall university experience.',
+      type: "Academic Professional Experience",
+      title: "Peer Educator",
+      company: "Washburn University",
+      location: "Topeka, KS",
+      period: "Aug 2024 - Present",
+      description:
+        "Mentored students through academic support, peer counseling, and career guidance workshops while promoting campus engagement and collaborating with faculty to enhance student success and the overall university experience.",
       achievements: [
-        'Led academic workshops and mentored students to boost confidence and engagement.'
+        "Led academic workshops and mentored students to boost confidence and engagement.",
       ],
-      skills: ['Mentoring', 'Leadership', 'Counseling', 'Communication', 'Engagement', 'Support',  'Networking']
+      skills: [
+        "Mentoring",
+        "Leadership",
+        "Counseling",
+        "Communication",
+        "Engagement",
+        "Support",
+        "Networking",
+      ],
     },
 
     {
-      type: 'Academic Professional Experience',
-      title: 'Student Ambassador',
-      company: 'Washburn University',
-      location: 'Topeka, KS',  
-      period: '| May 2025 – Present',
-      description: 'Tutored students in programming (C, Java, Python), data structures, algorithms, operating systems, networking, cybersecurity, and databases, while supporting learning in software engineering, AI/ML, and discrete mathematics, and guiding them through high-level CS projects with design, implementation, and debugging support.',
+      type: "Academic Professional Experience",
+      title: "Student Ambassador",
+      company: "Washburn University",
+      location: "Topeka, KS",
+      period: "| May 2025 – Present",
+      description:
+        "Tutored students in programming (C, Java, Python), data structures, algorithms, operating systems, networking, cybersecurity, and databases, while supporting learning in software engineering, AI/ML, and discrete mathematics, and guiding them through high-level CS projects with design, implementation, and debugging support.",
       achievements: [
-        'Guided new students through campus tours, academic tools, and orientation support.'
+        "Guided new students through campus tours, academic tools, and orientation support.",
       ],
-      skills: ['Programming lang(C, Java, Python)', 'data structures', 'algorithms', 'operating systems', 'networking', 'cybersecurity',  'databases']
+      skills: [
+        "Programming lang(C, Java, Python)",
+        "data structures",
+        "algorithms",
+        "operating systems",
+        "networking",
+        "cybersecurity",
+        "databases",
+      ],
     },
     /*
     {
@@ -124,51 +184,68 @@ const Experience = () => {
       skills: ['Leadership', 'Outreach', 'Networking', 'Engagement', 'Communication', 'Communication']
     },*/
     {
-      type: 'Academic Professional Experience',
-      title: 'Tutor/ Mentor – Upper Bound (TRIO Program)',
-      company: 'Washburn University',
-      location: 'Topeka, KS',  
-      period: 'Dec 2024 - Present',
-      description: 'Tutored high school students in math, science, and writing while mentoring them on college readiness, personal development, and academic confidence, and helping lead workshops on study skills, time management, financial aid, and cultural awareness.',
+      type: "Academic Professional Experience",
+      title: "Tutor/ Mentor – Upper Bound (TRIO Program)",
+      company: "Washburn University",
+      location: "Topeka, KS",
+      period: "Dec 2024 - Present",
+      description:
+        "Tutored high school students in math, science, and writing while mentoring them on college readiness, personal development, and academic confidence, and helping lead workshops on study skills, time management, financial aid, and cultural awareness.",
       achievements: [
-        'Mentored students in study skills, goal-setting, and academic confidence'
+        "Mentored students in study skills, goal-setting, and academic confidence",
       ],
-      skills: ['Mentoring', 'Leadership', 'Counseling', 'Communication', 'Engagement', 'Support',  'Networking']
+      skills: [
+        "Mentoring",
+        "Leadership",
+        "Counseling",
+        "Communication",
+        "Engagement",
+        "Support",
+        "Networking",
+      ],
     },
     {
-      type: 'Academic Professional Experience',
-      title: 'Content Story Writer',
-      company: 'Washburn University',
-      location: 'Topeka, KS',  
-      period: 'Sep 2023 - Aug 2024',
-      description: '●	Produced campus stories under tight deadlines, strengthening communication and storytelling skills.',
+      type: "Academic Professional Experience",
+      title: "Content Story Writer",
+      company: "Washburn University",
+      location: "Topeka, KS",
+      period: "Sep 2023 - Aug 2024",
+      description:
+        "●	Produced campus stories under tight deadlines, strengthening communication and storytelling skills.",
       achievements: [
-        'Produced campus stories under strict deadlines with clear, engaging writing.'
+        "Produced campus stories under strict deadlines with clear, engaging writing.",
       ],
-      skills: ['Writing', 'Research', 'Storytelling', 'Communication']
+      skills: ["Writing", "Research", "Storytelling", "Communication"],
     },
     {
-      type: 'Academic Professional Experience',
-      title: 'Office Assistant',
-      company: 'Mathematics & Statistics Department, Washburn University',
-      location: 'Topeka, KS',  
-      period: 'Nov 2023 - Dec 2024',
-      description: 'Provided administrative support, event coordination, and inventory management.',
+      type: "Academic Professional Experience",
+      title: "Office Assistant",
+      company: "Mathematics & Statistics Department, Washburn University",
+      location: "Topeka, KS",
+      period: "Nov 2023 - Dec 2024",
+      description:
+        "Provided administrative support, event coordination, and inventory management.",
       achievements: [
-        'Improved departmental operations by managing administrative tasks.'
+        "Improved departmental operations by managing administrative tasks.",
       ],
-      skills: ['Administration', 'Coordination', 'Scheduling', 'Management', 'Multitasking', 'Organization']
-    }
-
+      skills: [
+        "Administration",
+        "Coordination",
+        "Scheduling",
+        "Management",
+        "Multitasking",
+        "Organization",
+      ],
+    },
   ];
 
   const getTypeIcon = (type: string) => {
     switch (type) {
-      case 'professional':
+      case "professional":
         return Briefcase;
-      case 'internship':
+      case "internship":
         return Building;
-      case 'leadership':
+      case "leadership":
         return Users;
       default:
         return Briefcase;
@@ -177,14 +254,14 @@ const Experience = () => {
 
   const getTypeColor = (type: string) => {
     switch (type) {
-      case 'professional':
-        return 'badge-premium badge-success';
-      case 'internship':
-        return 'badge-premium';
-      case 'leadership':
-        return 'badge-premium badge-warning';
+      case "professional":
+        return "badge-premium badge-success";
+      case "internship":
+        return "badge-premium";
+      case "leadership":
+        return "badge-premium badge-warning";
       default:
-        return 'badge-premium';
+        return "badge-premium";
     }
   };
 
@@ -203,8 +280,9 @@ const Experience = () => {
               Professional Experience
             </h2>
             <p className="text-xl text-secondary max-w-3xl mx-auto">
-              A journey through my professional experiences, internships, and leadership roles 
-              that have shaped my expertise in AI/ML, research, and team management.
+              A journey through my professional experiences, internships, and
+              leadership roles that have shaped my expertise in AI/ML, research,
+              and team management.
             </p>
           </motion.div>
 
@@ -212,7 +290,7 @@ const Experience = () => {
           <div className="space-y-8">
             {experiences.map((experience, index) => {
               const Icon = getTypeIcon(experience.type);
-              
+
               return (
                 <motion.div
                   key={index}
@@ -237,7 +315,7 @@ const Experience = () => {
                           </p>
                         </div>
                       </div>
-                      
+
                       <div className="flex flex-wrap items-center gap-4 text-sm text-muted mb-4">
                         <div className="flex items-center">
                           <Calendar className="w-4 h-4 mr-1" />
@@ -247,8 +325,11 @@ const Experience = () => {
                           <MapPin className="w-4 h-4 mr-1" />
                           {experience.location}
                         </div>
-                        <span className={`text-xs font-medium ${getTypeColor(experience.type)}`}>
-                          {experience.type.charAt(0).toUpperCase() + experience.type.slice(1)}
+                        <span
+                          className={`text-xs font-medium ${getTypeColor(experience.type)}`}
+                        >
+                          {experience.type.charAt(0).toUpperCase() +
+                            experience.type.slice(1)}
                         </span>
                       </div>
                     </div>
@@ -266,12 +347,17 @@ const Experience = () => {
                         Key Achievements
                       </h4>
                       <ul className="space-y-2">
-                        {experience.achievements.map((achievement, achievementIndex) => (
-                          <li key={achievementIndex} className="text-sm text-muted flex items-start">
-                            <span className="w-1.5 h-1.5 bg-[var(--accent-muted)] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                            {achievement}
-                          </li>
-                        ))}
+                        {experience.achievements.map(
+                          (achievement, achievementIndex) => (
+                            <li
+                              key={achievementIndex}
+                              className="text-sm text-muted flex items-start"
+                            >
+                              <span className="w-1.5 h-1.5 bg-[var(--accent-muted)] rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                              {achievement}
+                            </li>
+                          ),
+                        )}
                       </ul>
                     </div>
 
@@ -298,15 +384,20 @@ const Experience = () => {
           </div>
 
           {/* Statistics Section */}
-          <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <motion.div
+            variants={itemVariants}
+            className="grid grid-cols-1 md:grid-cols-4 gap-8"
+          >
             {[
-              { stat: '3+', label: 'Years Experience' },
-              { stat: '15+', label: 'Projects Completed' },
-              { stat: '5+', label: 'Research Papers' },
-              { stat: '10+', label: 'Events Organized' },
+              { stat: "3+", label: "Years Experience" },
+              { stat: "15+", label: "Projects Completed" },
+              { stat: "5+", label: "Research Papers" },
+              { stat: "10+", label: "Events Organized" },
             ].map((item, idx) => (
               <div key={idx} className="text-center card-premium p-6">
-                <div className="text-3xl font-bold text-[var(--accent)] mb-2">{item.stat}</div>
+                <div className="text-3xl font-bold text-[var(--accent)] mb-2">
+                  {item.stat}
+                </div>
                 <div className="text-muted">{item.label}</div>
               </div>
             ))}

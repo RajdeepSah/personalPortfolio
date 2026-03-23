@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { cubicBezier, motion } from 'framer-motion';
-import { Download, Mail, Github, Linkedin, Twitter } from 'lucide-react';
+import { cubicBezier, motion } from "framer-motion";
+import { Download, Mail, Github, Linkedin, Twitter } from "lucide-react";
 
 const Hero = () => {
   const containerVariants = {
@@ -10,9 +10,9 @@ const Hero = () => {
       opacity: 1,
       transition: {
         delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
@@ -22,21 +22,24 @@ const Hero = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: cubicBezier(0.25, 0.1, 0.25, 1)
-      }
-    }
+        ease: cubicBezier(0.25, 0.1, 0.25, 1),
+      },
+    },
   };
 
   const buttonVariants = {
-    hover: { 
+    hover: {
       scale: 1.05,
-      transition: { duration: 0.2 }
+      transition: { duration: 0.2 },
     },
-    tap: { scale: 0.95 }
+    tap: { scale: 0.95 },
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-app text-primary">
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-app text-primary"
+    >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           variants={containerVariants}
@@ -57,8 +60,13 @@ const Hero = () => {
             variants={itemVariants}
             className="text-xl md:text-2xl text-secondary space-y-2"
           >
-            <p><b>Computer science & Mathematics student</b></p>
-            <p>AI/ML Researcher | Mathematical Researcher | Developer | Entrepreneur</p>
+            <p>
+              <b>Computer science & Mathematics student</b>
+            </p>
+            <p>
+              AI/ML Researcher | Mathematical Researcher | Developer |
+              Entrepreneur
+            </p>
             <p>Tutor | Mentor</p>
           </motion.div>
 
@@ -66,10 +74,15 @@ const Hero = () => {
           <motion.p
             variants={itemVariants}
             className="text-lg md:text-xl text-muted max-w-2xl mx-auto leading-relaxed"
-          ><i style={{ fontFamily: "Times New Roman, Times, serif" }}>
-            Motivated by intellectual curiosity and a commitment to rigorous analytical thinking.
-             My work centers on artificial intelligence and mathematical modeling, with an emphasis on developing adaptive, data-driven systems capable of addressing real-world challenges
-          </i>
+          >
+            <i style={{ fontFamily: "Times New Roman, Times, serif" }}>
+              I’m naturally curious and always looking to understand the “why”
+              behind things. I enjoy working on artificial intelligence and
+              mathematical modeling, and I’m passionate about building adaptive,
+              data-driven systems to solve real-world challenges. I like turning
+              complex ideas into practical, impactful solutions—something I
+              genuinely enjoy as a hobby.
+            </i>
           </motion.p>
 
           {/* CTA Buttons */}
@@ -116,7 +129,7 @@ const Hero = () => {
             >
               <Github size={24} />
             </motion.a>
-            
+
             <motion.a
               href="https://linkedin.com/in/rajdeepsah"
               target="_blank"
@@ -127,7 +140,7 @@ const Hero = () => {
             >
               <Linkedin size={24} />
             </motion.a>
-            
+
             <motion.a
               href="https://twitter.com/rajdeepsah"
               target="_blank"

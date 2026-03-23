@@ -1,27 +1,27 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Menu, X, Sun, Moon } from 'lucide-react';
-import Link from 'next/link';
-import { useTheme } from './ThemeProvider';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import Link from "next/link";
+import { useTheme } from "./ThemeProvider";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
 
   const toggleTheme = () => {
-    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
   };
 
   const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Projects', href: '/projects' },
-    { name: 'Experience', href: '/experience' },
-    { name: 'Leadership', href: '/leadership' },
-    { name: 'Research', href: '/research' },
-    { name: 'Contact', href: '/contact' },
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Projects", href: "/projects" },
+    { name: "Experience", href: "/experience" },
+    { name: "Leadership", href: "/leadership" },
+    { name: "Research", href: "/research" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -43,7 +43,11 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <motion.div key={item.name} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div
+                key={item.name}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <Link
                   href={item.href}
                   className="text-muted hover:text-primary transition-colors duration-200"
@@ -52,7 +56,7 @@ const Navigation = () => {
                 </Link>
               </motion.div>
             ))}
-            
+
             {/* Theme Toggle */}
             <motion.button
               onClick={toggleTheme}
@@ -60,7 +64,11 @@ const Navigation = () => {
               whileTap={{ scale: 0.9 }}
               className="p-2 rounded-full icon-chip text-primary hover:shadow-lg transition-all duration-200"
             >
-              {resolvedTheme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+              {resolvedTheme === "dark" ? (
+                <Sun size={20} />
+              ) : (
+                <Moon size={20} />
+              )}
             </motion.button>
           </div>
 
@@ -72,9 +80,13 @@ const Navigation = () => {
               whileTap={{ scale: 0.9 }}
               className="p-2 rounded-full icon-chip text-primary"
             >
-              {resolvedTheme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+              {resolvedTheme === "dark" ? (
+                <Sun size={20} />
+              ) : (
+                <Moon size={20} />
+              )}
             </motion.button>
-            
+
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
               whileHover={{ scale: 1.1 }}
@@ -90,13 +102,17 @@ const Navigation = () => {
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-surface border-t border-soft"
           >
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navItems.map((item) => (
-                <motion.div key={item.name} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <motion.div
+                  key={item.name}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <Link
                     href={item.href}
                     onClick={() => setIsOpen(false)}
