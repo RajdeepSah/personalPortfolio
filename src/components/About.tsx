@@ -76,11 +76,20 @@ const certifications = [
         >
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
+            {/* Mobile profile photo */}
+            <div className="md:hidden flex justify-center mb-6">
+              <div className="relative">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[var(--accent)] to-[var(--accent-strong)] opacity-30 blur-xl scale-110"></div>
+                <div className="relative w-32 h-32 rounded-full overflow-hidden" style={{ border: '2px solid var(--accent-muted)', boxShadow: 'var(--shadow-card)' }}>
+                  <img src="/profile.jpg" alt="Rajdeep Sah" className="w-full h-full object-cover object-top" />
+                </div>
+              </div>
+            </div>
             <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
               About Me
             </h2>
             <p className="text-xl text-secondary max-w-3xl mx-auto">
-              A passionate AI/ML Engineer and researcher with a strong foundation in mathematics 
+              A passionate AI/ML Engineer and researcher with a strong foundation in mathematics
               and computer science, dedicated to solving complex problems through innovative technology.
             </p>
           </motion.div>
@@ -171,6 +180,30 @@ const certifications = [
                         </ul>
                       </motion.div>
                     </div>
+
+                    {/* Profile photo — desktop only, right side of first timeline item */}
+                    {index === 0 && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        className="hidden md:flex md:w-1/2 md:pl-8 items-center justify-center"
+                      >
+                        <div className="relative">
+                          <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[var(--accent)] to-[var(--accent-strong)] opacity-20 blur-2xl scale-110 pointer-events-none"></div>
+                          <div
+                            className="relative w-64 h-72 rounded-2xl overflow-hidden"
+                            style={{ border: '2px solid var(--accent-muted)', boxShadow: 'var(--shadow-card)' }}
+                          >
+                            <img
+                              src="/profile.jpg"
+                              alt="Rajdeep Sah"
+                              className="w-full h-full object-cover object-top"
+                            />
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
                   </motion.div>
                 );
               })}
