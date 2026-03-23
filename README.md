@@ -61,12 +61,12 @@ Visit [http://localhost:3000](http://localhost:3000) to view the site. The dev s
 
 ## Scripts
 
-| Command | Description |
-| --- | --- |
-| `npm run dev` | Start the Next.js dev server with Turbopack on port 3000. |
-| `npm run build` | Create an optimized production build (`.next/`). |
-| `npm run start` | Serve the production build locally. |
-| `npm run lint` | Run ESLint with the repo configuration. |
+| Command         | Description                                               |
+| --------------- | --------------------------------------------------------- |
+| `npm run dev`   | Start the Next.js dev server with Turbopack on port 3000. |
+| `npm run build` | Create an optimized production build (`.next/`).          |
+| `npm run start` | Serve the production build locally.                       |
+| `npm run lint`  | Run ESLint with the repo configuration.                   |
 
 ## Project Structure
 
@@ -152,7 +152,7 @@ Visit [http://localhost:3000](http://localhost:3000) to view the site. The dev s
 
 ## Deployment
 
-### Vercel 
+### Vercel
 
 1. Push your fork to GitHub.
 2. Import the repo into Vercel and select the `Next.js` framework preset.

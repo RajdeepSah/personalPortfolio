@@ -1,7 +1,18 @@
-'use client';
+"use client";
 
-import { cubicBezier, motion } from 'framer-motion';
-import { ExternalLink, Github, Database, Gamepad2, Calculator, Ship, Banknote, FileText } from 'lucide-react';
+import { cubicBezier, motion } from "framer-motion";
+import {
+  ExternalLink,
+  Github,
+  Database,
+  Gamepad2,
+  Bot,
+  MessagesSquare,
+  Calculator,
+  Ship,
+  Banknote,
+  FileText,
+} from "lucide-react";
 
 const Projects = () => {
   const containerVariants = {
@@ -10,9 +21,9 @@ const Projects = () => {
       opacity: 1,
       transition: {
         delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
@@ -22,72 +33,171 @@ const Projects = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: cubicBezier(0.25, 0.1, 0.25, 1)
-      }
-    }
+        ease: cubicBezier(0.25, 0.1, 0.25, 1),
+      },
+    },
   };
 
   const projects = [
     {
+      title: "Dragon Groove",
+      description:
+        "A 3D fighting game prototype featuring physics-based combat, character actions, and interactive debug controls — built with a modern web-based 3D game development stack.",
+      icon: Gamepad2,
+      techStack: [
+        "Next.js",
+        "React Three Fiber",
+        "Rapier Physics",
+        "TypeScript",
+      ],
+      features: [
+        "3D Physics-Based Combat",
+        "Character Action System",
+        "Real-Time HP & Debug UI",
+        "Automated Testing (Jest + Cypress)",
+      ],
+      status: "In Progress",
+      github: "https://github.com/NyaliaLui/dg-proto",
+      demo: "https://dg-proto.vercel.app/",
+    },
+
+    {
+      title: "Kalshi Trading Bot",
+      description:
+        "An automated trading bot for Kalshi prediction markets that analyzes market data and executes trades programmatically via the Kalshi API, with a web-based dashboard for monitoring.",
+      icon: Bot,
+      techStack: ["JavaScript", "Node.js", "Kalshi API", "REST API"],
+      features: [
+        "Automated Trade Execution",
+        "Market Data Analysis",
+        "Prediction Market Integration",
+        "Web Dashboard",
+      ],
+      status: "In Progress",
+      github: "https://github.com/RajdeepSah/Kalshi_Bot",
+      demo: "https://KalshiBot.officialework.com",
+    },
+
+    {
+      title: "Model Mayhem",
+      description:
+        "A multi-AI chat arena where one prompt triggers three bots simultaneously — generating real-time debates, ego clashes, and unpredictable interactions between competing AI models.",
+      icon: MessagesSquare,
+      techStack: ["Next.js", "TypeScript", "AI APIs", "React"],
+      features: [
+        "Multi-Model Real-Time Chat",
+        "Single Prompt Multiple Response",
+        "AI-to-AI Interaction Engine",
+        "Dynamic Conversation Dynamics",
+      ],
+      status: "Completed",
+      github: "https://github.com/RajdeepSah/ProjectMayhem",
+      demo: "#",
+    },
+
+    {
       title: "Champions League DBMS",
-      description: "A comprehensive database management system for tracking Champions League statistics, player performance, and team analytics with advanced querying capabilities.",
+      description:
+        "A comprehensive database management system for tracking Champions League statistics, player performance, and team analytics with advanced querying capabilities.",
       icon: Database,
       techStack: ["Postgre SQL", "Python", "Flask", "HTML/CSS"],
-      features: ["Player Statistics Tracking", "Team Performance Analytics", "Advanced Query Interface", "Data Visualization"],
+      features: [
+        "Player Statistics Tracking",
+        "Team Performance Analytics",
+        "Advanced Query Interface",
+        "Data Visualization",
+      ],
       status: "Completed",
       github: "https://github.com/RajdeepSah/dataBaseFinalProject",
-      demo: "#"
+      demo: "#",
     },
     {
       title: "RunMickyRun Game",
-      description: "An engaging 2D endless runner game featuring Mickey Dog with dynamic obstacles, scoring system, and smooth gameplay mechanics.",
+      description:
+        "An engaging 2D endless runner game featuring Mickey Dog with dynamic obstacles, scoring system, and smooth gameplay mechanics.",
       icon: Gamepad2,
-      techStack: ["Canvas API (rendering & animation)", "Audio API (sound effects)", "HTML", "CSS" , "JavaScript", "Game Development"],
-      features: ["Endless Runner Mechanics", "Dynamic Obstacles", "Score System", "Responsive Controls"],
+      techStack: [
+        "Canvas API (rendering & animation)",
+        "Audio API (sound effects)",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Game Development",
+      ],
+      features: [
+        "Endless Runner Mechanics",
+        "Dynamic Obstacles",
+        "Score System",
+        "Responsive Controls",
+      ],
       status: "Completed",
       github: "https://github.com/RajdeepSah/RunMickyRunWeb",
-      demo: "https://runmicky-web.vercel.app/"
+      demo: "https://runmicky-web.vercel.app/",
     },
     {
       title: "AI-Powered Tic-Tac-Toe",
-      description: "An intelligent Tic-Tac-Toe game with AI opponent using minimax algorithm, featuring different difficulty levels and beautiful UI.",
+      description:
+        "An intelligent Tic-Tac-Toe game with AI opponent using minimax algorithm, featuring different difficulty levels and beautiful UI.",
       icon: Calculator,
       techStack: ["Python", "AI Algorithms", "Minimax"],
-      features: ["AI Opponent", "Multiple Difficulty Levels", "Game Statistics", "Intuitive UI"],
+      features: [
+        "AI Opponent",
+        "Multiple Difficulty Levels",
+        "Game Statistics",
+        "Intuitive UI",
+      ],
       status: "Completed",
       github: "https://github.com/rajdeepsah/ai-tic-tac-toe",
-      demo: "#"
+      demo: "#",
     },
     {
       title: "Battleship Game",
-      description: "A strategic naval combat game with both single-player and multiplayer modes, featuring advanced AI and network capabilities.",
+      description:
+        "A strategic naval combat game with both single-player and multiplayer modes, featuring advanced AI and network capabilities.",
       icon: Ship,
       techStack: ["Java", "Swing", "Networking", "AI"],
-      features: ["Multiplayer Support", "AI Opponent", "Strategic Gameplay", "Network Communication"],
+      features: [
+        "Multiplayer Support",
+        "AI Opponent",
+        "Strategic Gameplay",
+        "Network Communication",
+      ],
       status: "Completed",
       github: "https://github.com/rajdeepsah/battleship-game",
-      demo: "#"
+      demo: "#",
     },
     {
       title: "Banking Application",
-      description: "A secure banking application with user authentication, transaction management, and financial analytics dashboard.",
+      description:
+        "A secure banking application with user authentication, transaction management, and financial analytics dashboard.",
       icon: Banknote,
       techStack: ["React", "Node.js", "MongoDB", "Express", "JWT"],
-      features: ["User Authentication", "Transaction Management", "Financial Analytics", "Secure API"],
+      features: [
+        "User Authentication",
+        "Transaction Management",
+        "Financial Analytics",
+        "Secure API",
+      ],
       status: "Completed",
       github: "https://github.com/rajdeepsah/banking-app",
-      demo: "#"
+      demo: "#",
     },
     {
       title: "Marks Evaluation System",
-      description: "An automated grading system for educational institutions with analytics, report generation, and student performance tracking.",
+      description:
+        "An automated grading system for educational institutions with analytics, report generation, and student performance tracking.",
       icon: FileText,
       techStack: ["Python", "Django", "PostgreSQL", "Chart.js"],
-      features: ["Automated Grading", "Performance Analytics", "Report Generation", "Student Dashboard"],
+      features: [
+        "Automated Grading",
+        "Performance Analytics",
+        "Report Generation",
+        "Student Dashboard",
+      ],
       status: "Completed",
       github: "https://github.com/rajdeepsah/marks-evaluation",
-      demo: "#"
-    }
+      demo: "#",
+    },
   ];
 
   return (
@@ -105,16 +215,22 @@ const Projects = () => {
               Featured Projects
             </h2>
             <p className="text-xl text-secondary max-w-3xl mx-auto">
-              A collection of my technical projects showcasing expertise in AI/ML, web development, 
-              game development, and database management systems.
+              A collection of my technical projects showcasing expertise in
+              AI/ML, web development, game development, and database management
+              systems.
+              <br />
+              <i>Last updated: Aug 2025.</i>
             </p>
           </motion.div>
 
           {/* Projects Grid */}
-          <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div
+            variants={itemVariants}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
             {projects.map((project, index) => {
               const Icon = project.icon;
-              
+
               return (
                 <motion.div
                   key={index}
@@ -129,11 +245,13 @@ const Projects = () => {
                     <div className="w-12 h-12 icon-chip rounded-2xl flex items-center justify-center group-hover:shadow-lg transition-shadow duration-300">
                       <Icon className="w-6 h-6 text-[var(--accent)]" />
                     </div>
-                    <span className={`badge-premium text-xs ${
-                      project.status === 'Completed' 
-                        ? 'badge-success'
-                        : 'badge-warning'
-                    }`}>
+                    <span
+                      className={`badge-premium text-xs ${
+                        project.status === "Completed"
+                          ? "badge-success"
+                          : "badge-warning"
+                      }`}
+                    >
                       {project.status}
                     </span>
                   </div>
@@ -155,7 +273,10 @@ const Projects = () => {
                     </h4>
                     <ul className="space-y-1">
                       {project.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="text-xs text-muted flex items-start">
+                        <li
+                          key={featureIndex}
+                          className="text-xs text-muted flex items-start"
+                        >
                           <span className="w-1 h-1 bg-[var(--accent-muted)] rounded-full mt-2 mr-2 flex-shrink-0"></span>
                           {feature}
                         </li>

@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { Github, Linkedin, Twitter, Mail, Heart } from 'lucide-react';
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { Github, Linkedin, Twitter, Mail, Heart } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,38 +10,38 @@ const Footer = () => {
   const socialLinks = [
     {
       icon: Github,
-      label: 'GitHub',
-      link: 'https://github.com/RajdeepSah',
-      color: 'hover:text-[var(--accent)]'
+      label: "GitHub",
+      link: "https://github.com/RajdeepSah",
+      color: "hover:text-[var(--accent)]",
     },
     {
       icon: Linkedin,
-      label: 'LinkedIn',
-      link: 'https://www.linkedin.com/in/rajdeep-sah-0a5363204/',
-      color: 'hover:text-[var(--accent-strong)]'
+      label: "LinkedIn",
+      link: "https://www.linkedin.com/in/rajdeep-sah-0a5363204/",
+      color: "hover:text-[var(--accent-strong)]",
     },
     {
       icon: Twitter,
-      label: 'Twitter',
-      link: 'https://x.com/RajdeepShah_',
-      color: 'hover:text-[var(--accent-strong)]'
+      label: "Twitter",
+      link: "https://x.com/RajdeepShah_",
+      color: "hover:text-[var(--accent-strong)]",
     },
     {
       icon: Mail,
-      label: 'Email',
-      link: 'mailto:rajdeepofficialework@gmail.com',
-      color: 'hover:text-[var(--accent)]'
-    }
+      label: "Email",
+      link: "mailto:rajdeepofficialework@gmail.com",
+      color: "hover:text-[var(--accent)]",
+    },
   ];
 
   const quickLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Projects', href: '/projects' },
-    { name: 'Experience', href: '/experience' },
-    { name: 'Leadership', href: '/leadership' },
-    { name: 'Research', href: '/research' },
-    { name: 'Contact', href: '/contact' }
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Projects", href: "/projects" },
+    { name: "Experience", href: "/experience" },
+    { name: "Leadership", href: "/leadership" },
+    { name: "Research", href: "/research" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -52,13 +52,14 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-2xl font-bold text-primary">Rajdeep Sah</h3>
             <p className="text-muted leading-relaxed">
-              AI/ML Engineer, Researcher, and Developer passionate about solving complex problems 
-              through artificial intelligence and machine learning.
+              AI/ML Engineer, Researcher, and Developer passionate about solving
+              complex problems through artificial intelligence and machine
+              learning.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => {
                 const Icon = social.icon;
-                
+
                 return (
                   <motion.a
                     key={index}
@@ -121,7 +122,7 @@ const Footer = () => {
             <p className="text-muted text-sm">
               © {currentYear} Rajdeep Sah. All rights reserved.
             </p>
-            <motion.p 
+            <motion.p
               className="text-muted text-sm flex items-center mt-4 md:mt-0"
               whileHover={{ scale: 1.05 }}
             >

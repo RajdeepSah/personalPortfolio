@@ -15,12 +15,20 @@
   --accent-strong: #2dd4bf;
   --accent-muted: rgba(122, 90, 250, 0.12);
   --accent-gradient: linear-gradient(135deg, #7a5afa 0%, #2dd4bf 90%);
-  --accent-gradient-soft: linear-gradient(135deg, rgba(122, 90, 250, 0.14), rgba(45, 212, 191, 0.18));
+  --accent-gradient-soft: linear-gradient(
+    135deg,
+    rgba(122, 90, 250, 0.14),
+    rgba(45, 212, 191, 0.18)
+  );
   --shadow-card: 0 25px 60px rgba(15, 23, 42, 0.08);
   --shadow-card-hover: 0 35px 80px rgba(15, 23, 42, 0.12);
   --glow-strong: 0 0 35px rgba(122, 90, 250, 0.35);
   --glow-soft: 0 0 25px rgba(45, 212, 191, 0.35);
-  --icon-ring: linear-gradient(135deg, rgba(122, 90, 250, 0.4), rgba(45, 212, 191, 0.4));
+  --icon-ring: linear-gradient(
+    135deg,
+    rgba(122, 90, 250, 0.4),
+    rgba(45, 212, 191, 0.4)
+  );
 }
 
 html.light {
@@ -38,12 +46,20 @@ html.light {
   --accent-strong: #2dd4bf;
   --accent-muted: rgba(122, 90, 250, 0.12);
   --accent-gradient: linear-gradient(135deg, #7a5afa 0%, #2dd4bf 90%);
-  --accent-gradient-soft: linear-gradient(135deg, rgba(122, 90, 250, 0.14), rgba(45, 212, 191, 0.18));
+  --accent-gradient-soft: linear-gradient(
+    135deg,
+    rgba(122, 90, 250, 0.14),
+    rgba(45, 212, 191, 0.18)
+  );
   --shadow-card: 0 25px 60px rgba(15, 23, 42, 0.08);
   --shadow-card-hover: 0 35px 80px rgba(15, 23, 42, 0.12);
   --glow-strong: 0 0 35px rgba(122, 90, 250, 0.35);
   --glow-soft: 0 0 25px rgba(45, 212, 191, 0.35);
-  --icon-ring: linear-gradient(135deg, rgba(122, 90, 250, 0.4), rgba(45, 212, 191, 0.4));
+  --icon-ring: linear-gradient(
+    135deg,
+    rgba(122, 90, 250, 0.4),
+    rgba(45, 212, 191, 0.4)
+  );
 }
 
 html.dark {
@@ -61,12 +77,20 @@ html.dark {
   --accent-strong: #5df2c5;
   --accent-muted: rgba(157, 139, 255, 0.22);
   --accent-gradient: linear-gradient(135deg, #9d8bff 0%, #0ea5e9 95%);
-  --accent-gradient-soft: linear-gradient(135deg, rgba(157, 139, 255, 0.25), rgba(14, 165, 233, 0.2));
+  --accent-gradient-soft: linear-gradient(
+    135deg,
+    rgba(157, 139, 255, 0.25),
+    rgba(14, 165, 233, 0.2)
+  );
   --shadow-card: 0 30px 80px rgba(2, 4, 16, 0.85);
   --shadow-card-hover: 0 40px 110px rgba(1, 3, 12, 0.95);
   --glow-strong: 0 0 35px rgba(157, 139, 255, 0.35);
   --glow-soft: 0 0 25px rgba(14, 165, 233, 0.35);
-  --icon-ring: linear-gradient(135deg, rgba(157, 139, 255, 0.45), rgba(14, 165, 233, 0.4));
+  --icon-ring: linear-gradient(
+    135deg,
+    rgba(157, 139, 255, 0.45),
+    rgba(14, 165, 233, 0.4)
+  );
 }
 
 @theme inline {
@@ -80,7 +104,9 @@ body {
   background: var(--background);
   color: var(--text-primary);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
-  transition: background 0.4s ease, color 0.4s ease;
+  transition:
+    background 0.4s ease,
+    color 0.4s ease;
 }
 
 ::selection {
@@ -122,7 +148,10 @@ body {
   border: 1px solid var(--card-border);
   border-radius: 1.5rem;
   box-shadow: var(--shadow-card);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border 0.3s ease;
 }
 
 .card-premium:hover {
@@ -136,7 +165,9 @@ body {
   color: #fff;
   border-radius: 9999px;
   box-shadow: var(--glow-strong);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .btn-premium:hover {
@@ -149,7 +180,11 @@ body {
   border: 1px solid var(--card-border);
   color: var(--text-primary);
   background: transparent;
-  transition: border 0.3s ease, color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    border 0.3s ease,
+    color 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .btn-outline-premium:hover {
@@ -195,7 +230,9 @@ body {
 
 .link-premium {
   color: var(--accent);
-  transition: color 0.3s ease, text-shadow 0.3s ease;
+  transition:
+    color 0.3s ease,
+    text-shadow 0.3s ease;
 }
 
 .link-premium:hover {
@@ -241,12 +278,16 @@ body {
 
 /* Smooth transitions for theme changes */
 * {
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
 }
 
 /* Custom animations */
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {

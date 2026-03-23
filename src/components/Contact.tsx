@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { cubicBezier, motion } from 'framer-motion';
+import { cubicBezier, motion } from "framer-motion";
 import {
   Mail,
   Phone,
@@ -11,10 +11,10 @@ import {
   Send,
   MessageCircle,
   Facebook,
-  Instagram
-} from 'lucide-react';
-import { useState } from 'react';
-import type { ChangeEvent, FormEvent } from 'react';
+  Instagram,
+} from "lucide-react";
+import { useState } from "react";
+import type { ChangeEvent, FormEvent } from "react";
 
 type ContactFormData = {
   name: string;
@@ -31,10 +31,10 @@ type ContactResponse = {
 };
 
 const initialFormState: ContactFormData = {
-  name: '',
-  email: '',
-  subject: '',
-  message: ''
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
 };
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -43,8 +43,10 @@ const Contact = () => {
   const [formData, setFormData] = useState<ContactFormData>(initialFormState);
   const [formErrors, setFormErrors] = useState<ContactFormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [feedbackMessage, setFeedbackMessage] = useState<string>('');
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
+  const [feedbackMessage, setFeedbackMessage] = useState<string>("");
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -52,9 +54,9 @@ const Contact = () => {
       opacity: 1,
       transition: {
         delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
@@ -64,19 +66,21 @@ const Contact = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: cubicBezier(0.25, 0.1, 0.25, 1)
-      }
-    }
+        ease: cubicBezier(0.25, 0.1, 0.25, 1),
+      },
+    },
   };
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     const fieldName = name as keyof ContactFormData;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [fieldName]: value
+      [fieldName]: value,
     }));
-    setFormErrors(prev => {
+    setFormErrors((prev) => {
       if (!prev[fieldName]) {
         return prev;
       }
@@ -90,21 +94,21 @@ const Contact = () => {
     const errors: ContactFormErrors = {};
 
     if (!values.name.trim()) {
-      errors.name = 'Name is required.';
+      errors.name = "Name is required.";
     }
 
     if (!values.email.trim()) {
-      errors.email = 'Email is required.';
+      errors.email = "Email is required.";
     } else if (!emailPattern.test(values.email.trim())) {
-      errors.email = 'Please enter a valid email address.';
+      errors.email = "Please enter a valid email address.";
     }
 
     if (!values.subject.trim()) {
-      errors.subject = 'Subject is required.';
+      errors.subject = "Subject is required.";
     }
 
     if (!values.message.trim()) {
-      errors.message = 'Message is required.';
+      errors.message = "Message is required.";
     }
 
     return errors;
@@ -112,14 +116,16 @@ const Contact = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setSubmitStatus('idle');
-    setFeedbackMessage('');
+    setSubmitStatus("idle");
+    setFeedbackMessage("");
 
     const validationErrors = validateForm(formData);
     if (Object.keys(validationErrors).length > 0) {
       setFormErrors(validationErrors);
-      setSubmitStatus('error');
-      setFeedbackMessage('Please correct the highlighted fields before resubmitting.');
+      setSubmitStatus("error");
+      setFeedbackMessage(
+        "Please correct the highlighted fields before resubmitting.",
+      );
       return;
     }
 
@@ -127,12 +133,12 @@ const Contact = () => {
     setFormErrors({});
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       let data: ContactResponse | null = null;
@@ -144,18 +150,22 @@ const Contact = () => {
       }
 
       if (!response.ok || !data?.success) {
-        throw new Error(data?.error ?? 'Something went wrong, please try again.');
+        throw new Error(
+          data?.error ?? "Something went wrong, please try again.",
+        );
       }
 
-      setSubmitStatus('success');
-      setFeedbackMessage("Thank you! Your message has been sent successfully. I'll get back to you soon.");
+      setSubmitStatus("success");
+      setFeedbackMessage(
+        "Thank you! Your message has been sent successfully. I'll get back to you soon.",
+      );
       setFormData(initialFormState);
     } catch (error) {
-      setSubmitStatus('error');
+      setSubmitStatus("error");
       setFeedbackMessage(
         error instanceof Error
           ? error.message
-          : 'Sorry, there was an error sending your message. Please try again later.'
+          : "Sorry, there was an error sending your message. Please try again later.",
       );
     } finally {
       setIsSubmitting(false);
@@ -165,61 +175,61 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: Mail,
-      label: 'Email',
-      value: 'rajdeepofficialework@gmail.com',
-      link: 'mailto:rajdeepofficialework@gmail.com'
+      label: "Email",
+      value: "rajdeepofficialework@gmail.com",
+      link: "mailto:rajdeepofficialework@gmail.com",
     },
     {
       icon: Mail,
-      label: 'University Email',
-      value: 'Rajdeep.sah@washburn.edu',
-      link: 'mailto:Rajdeep.sah@washburn.edu'
+      label: "University Email",
+      value: "Rajdeep.sah@washburn.edu",
+      link: "mailto:Rajdeep.sah@washburn.edu",
     },
     {
       icon: Phone,
-      label: 'Phone',
-      value: '+1 785 730 1643',
-      link: 'tel:+17857301643'
+      label: "Phone",
+      value: "+1 785 730 1643",
+      link: "tel:+17857301643",
     },
     {
       icon: MapPin,
-      label: 'Location',
-      value: 'Topeka, Kansas, USA',
-      link: '#'
-    }
+      label: "Location",
+      value: "Topeka, Kansas, USA",
+      link: "#",
+    },
   ];
 
   const socialLinks = [
     {
       icon: Github,
-      label: 'GitHub',
-      link: 'https://github.com/RajdeepSah',
-      color: 'hover:text-[var(--accent)]'
+      label: "GitHub",
+      link: "https://github.com/RajdeepSah",
+      color: "hover:text-[var(--accent)]",
     },
     {
       icon: Linkedin,
-      label: 'LinkedIn',
-      link: 'https://www.linkedin.com/in/rajdeep-sah-0a5363204/',
-      color: 'hover:text-[var(--accent-strong)]'
+      label: "LinkedIn",
+      link: "https://www.linkedin.com/in/rajdeep-sah-0a5363204/",
+      color: "hover:text-[var(--accent-strong)]",
     },
     {
       icon: Twitter,
-      label: 'X (Twitter)',
-      link: 'https://x.com/RajdeepShah_',
-      color: 'hover:text-[var(--accent-strong)]'
+      label: "X (Twitter)",
+      link: "https://x.com/RajdeepShah_",
+      color: "hover:text-[var(--accent-strong)]",
     },
     {
       icon: Facebook,
-      label: 'Facebook',
-      link: 'https://www.facebook.com/rajdeeptherd',
-      color: 'hover:text-blue-400'
+      label: "Facebook",
+      link: "https://www.facebook.com/rajdeeptherd",
+      color: "hover:text-blue-400",
     },
     {
       icon: Instagram,
-      label: 'Instagram',
-      link: 'https://www.instagram.com/rajdeepshah_/',
-      color: 'hover:text-pink-400'
-    }
+      label: "Instagram",
+      link: "https://www.instagram.com/rajdeepshah_/",
+      color: "hover:text-pink-400",
+    },
   ];
 
   return (
@@ -236,9 +246,10 @@ const Contact = () => {
             <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
               Get In Touch
             </h2>
-              <p className="text-xl text-secondary max-w-3xl mx-auto">
-                I&rsquo;m always interested in discussing new opportunities, collaborations, 
-                and innovative projects. Let&rsquo;s connect and explore how we can work together.
+            <p className="text-xl text-secondary max-w-3xl mx-auto">
+              I&rsquo;m always interested in discussing new opportunities,
+              collaborations, and innovative projects. Let&rsquo;s connect and
+              explore how we can work together.
             </p>
           </motion.div>
 
@@ -252,7 +263,7 @@ const Contact = () => {
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => {
                     const Icon = info.icon;
-                    
+
                     return (
                       <motion.a
                         key={index}
@@ -266,7 +277,9 @@ const Contact = () => {
                         </div>
                         <div>
                           <p className="text-sm text-muted">{info.label}</p>
-                          <p className="text-primary font-medium">{info.value}</p>
+                          <p className="text-primary font-medium">
+                            {info.value}
+                          </p>
                         </div>
                       </motion.a>
                     );
@@ -282,7 +295,7 @@ const Contact = () => {
                 <div className="flex space-x-4">
                   {socialLinks.map((social, index) => {
                     const Icon = social.icon;
-                    
+
                     return (
                       <motion.a
                         key={index}
@@ -308,9 +321,9 @@ const Contact = () => {
                     Currently Available
                   </h4>
                 </div>
-                  <p className="text-secondary text-sm">
-                    I&rsquo;m currently open to new opportunities, collaborations, and interesting projects. 
-                  Feel free to reach out!
+                <p className="text-secondary text-sm">
+                  I&rsquo;m currently open to new opportunities, collaborations,
+                  and interesting projects. Feel free to reach out!
                 </p>
               </div>
             </motion.div>
@@ -326,97 +339,121 @@ const Contact = () => {
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-muted mb-2">
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium text-muted mb-2"
+                      >
                         Name *
                       </label>
                       <input
                         type="text"
                         id="name"
-                          name="name"
+                        name="name"
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                          aria-invalid={Boolean(formErrors.name)}
-                          aria-describedby="name-error"
-                          className="w-full px-4 py-3 border border-soft rounded-lg focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent bg-surface text-primary placeholder:text-muted transition-colors duration-200"
+                        aria-invalid={Boolean(formErrors.name)}
+                        aria-describedby="name-error"
+                        className="w-full px-4 py-3 border border-soft rounded-lg focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent bg-surface text-primary placeholder:text-muted transition-colors duration-200"
                         placeholder="Your name"
                       />
-                        {formErrors.name && (
-                          <p id="name-error" className="mt-2 text-sm text-red-400">
-                            {formErrors.name}
-                          </p>
-                        )}
+                      {formErrors.name && (
+                        <p
+                          id="name-error"
+                          className="mt-2 text-sm text-red-400"
+                        >
+                          {formErrors.name}
+                        </p>
+                      )}
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-muted mb-2">
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-medium text-muted mb-2"
+                      >
                         Email *
                       </label>
                       <input
                         type="email"
                         id="email"
                         name="email"
-                          value={formData.email}
+                        value={formData.email}
                         onChange={handleInputChange}
                         required
-                          aria-invalid={Boolean(formErrors.email)}
-                          aria-describedby="email-error"
-                          className="w-full px-4 py-3 border border-soft rounded-lg focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent bg-surface text-primary placeholder:text-muted transition-colors duration-200"
+                        aria-invalid={Boolean(formErrors.email)}
+                        aria-describedby="email-error"
+                        className="w-full px-4 py-3 border border-soft rounded-lg focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent bg-surface text-primary placeholder:text-muted transition-colors duration-200"
                         placeholder="your.email@example.com"
                       />
-                        {formErrors.email && (
-                          <p id="email-error" className="mt-2 text-sm text-red-400">
-                            {formErrors.email}
-                          </p>
-                        )}
+                      {formErrors.email && (
+                        <p
+                          id="email-error"
+                          className="mt-2 text-sm text-red-400"
+                        >
+                          {formErrors.email}
+                        </p>
+                      )}
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-muted mb-2">
+                    <label
+                      htmlFor="subject"
+                      className="block text-sm font-medium text-muted mb-2"
+                    >
                       Subject *
                     </label>
                     <input
                       type="text"
                       id="subject"
-                        name="subject"
+                      name="subject"
                       value={formData.subject}
                       onChange={handleInputChange}
                       required
-                        aria-invalid={Boolean(formErrors.subject)}
-                        aria-describedby="subject-error"
-                        className="w-full px-4 py-3 border border-soft rounded-lg focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent bg-surface text-primary placeholder:text-muted transition-colors duration-200"
+                      aria-invalid={Boolean(formErrors.subject)}
+                      aria-describedby="subject-error"
+                      className="w-full px-4 py-3 border border-soft rounded-lg focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent bg-surface text-primary placeholder:text-muted transition-colors duration-200"
                       placeholder="What's this about?"
                     />
-                      {formErrors.subject && (
-                        <p id="subject-error" className="mt-2 text-sm text-red-400">
-                          {formErrors.subject}
-                        </p>
-                      )}
+                    {formErrors.subject && (
+                      <p
+                        id="subject-error"
+                        className="mt-2 text-sm text-red-400"
+                      >
+                        {formErrors.subject}
+                      </p>
+                    )}
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-muted mb-2">
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-muted mb-2"
+                    >
                       Message *
                     </label>
                     <textarea
                       id="message"
                       name="message"
-                        value={formData.message}
+                      value={formData.message}
                       onChange={handleInputChange}
                       required
                       rows={6}
-                        aria-invalid={Boolean(formErrors.message)}
-                        aria-describedby="message-error"
-                        className="w-full px-4 py-3 border border-soft rounded-lg focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent bg-surface text-primary placeholder:text-muted transition-colors duration-200 resize-none"
+                      aria-invalid={Boolean(formErrors.message)}
+                      aria-describedby="message-error"
+                      className="w-full px-4 py-3 border border-soft rounded-lg focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent bg-surface text-primary placeholder:text-muted transition-colors duration-200 resize-none"
                       placeholder="Tell me about your project or opportunity..."
                     />
-                      {formErrors.message && (
-                        <p id="message-error" className="mt-2 text-sm text-red-400">
-                          {formErrors.message}
-                        </p>
-                      )}
+                    {formErrors.message && (
+                      <p
+                        id="message-error"
+                        className="mt-2 text-sm text-red-400"
+                      >
+                        {formErrors.message}
+                      </p>
+                    )}
                   </div>
 
                   <motion.button
@@ -439,23 +476,23 @@ const Contact = () => {
                     )}
                   </motion.button>
 
-                    {submitStatus === 'success' && feedbackMessage && (
+                  {submitStatus === "success" && feedbackMessage && (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       className="p-4 rounded-lg text-sm bg-emerald-500/10 text-emerald-400"
                     >
-                        {feedbackMessage}
+                      {feedbackMessage}
                     </motion.div>
                   )}
 
-                    {submitStatus === 'error' && feedbackMessage && (
+                  {submitStatus === "error" && feedbackMessage && (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       className="p-4 rounded-lg text-sm bg-red-500/10 text-red-400"
                     >
-                        {feedbackMessage}
+                      {feedbackMessage}
                     </motion.div>
                   )}
                 </form>

@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { AnimatePresence, motion } from 'framer-motion';
-import { usePathname } from 'next/navigation';
-import React from 'react';
+import { AnimatePresence, motion } from "framer-motion";
+import { usePathname } from "next/navigation";
+import React from "react";
 
 const RouteTransition = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
@@ -23,5 +23,3 @@ const RouteTransition = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default RouteTransition;
-
-

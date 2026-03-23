@@ -15,19 +15,29 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Rajdeep Sah - AI/ML Engineer | Researcher | Developer",
-  description: "AI/ML Engineer, AI Researcher, Mathematical Researcher, Developer, and Manager. Passionate about solving complex problems through artificial intelligence and machine learning.",
-  keywords: ["AI", "Machine Learning", "Research", "Developer", "Mathematical Research", "Artificial Intelligence"],
+  description:
+    "AI/ML Engineer, AI Researcher, Mathematical Researcher, Developer, and Manager. Passionate about solving complex problems through artificial intelligence and machine learning.",
+  keywords: [
+    "AI",
+    "Machine Learning",
+    "Research",
+    "Developer",
+    "Mathematical Research",
+    "Artificial Intelligence",
+  ],
   authors: [{ name: "Rajdeep Sah" }],
   openGraph: {
     title: "Rajdeep Sah - AI/ML Engineer | Researcher | Developer",
-    description: "AI/ML Engineer, AI Researcher, Mathematical Researcher, Developer, and Manager. Passionate about solving complex problems through artificial intelligence and machine learning.",
+    description:
+      "AI/ML Engineer, AI Researcher, Mathematical Researcher, Developer, and Manager. Passionate about solving complex problems through artificial intelligence and machine learning.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     title: "Rajdeep Sah - AI/ML Engineer | Researcher | Developer",
-    description: "AI/ML Engineer, AI Researcher, Mathematical Researcher, Developer, and Manager.",
+    description:
+      "AI/ML Engineer, AI Researcher, Mathematical Researcher, Developer, and Manager.",
   },
   robots: {
     index: true,
@@ -46,9 +56,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300`}
         suppressHydrationWarning
       >
-        <AppShell>
-          {children}
-        </AppShell>
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );

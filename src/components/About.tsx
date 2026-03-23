@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { cubicBezier, easeOut, motion } from 'framer-motion';
-import { Download, GraduationCap, Briefcase, Award } from 'lucide-react';
+import Image from "next/image";
+import { cubicBezier, easeOut, motion } from "framer-motion";
+import { Download, GraduationCap, Briefcase, Award } from "lucide-react";
 
 const About = () => {
   const containerVariants = {
@@ -11,9 +11,9 @@ const About = () => {
       opacity: 1,
       transition: {
         delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
@@ -23,48 +23,50 @@ const About = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: cubicBezier(0.25, 0.1, 0.25, 1)
-      }
-    }
+        ease: cubicBezier(0.25, 0.1, 0.25, 1),
+      },
+    },
   };
 
-const timelineData = [
-  {
-    type: 'education',
-    icon: GraduationCap,
-    title: 'Bachelor of Science in Computer Information Science & Bachelor of Science in Pure Mathematics',
-    institution: 'Washburn University, Topeka, KS',
-    period: 'Aug 2023 – Dec 2026',
-    description: 'Double-major focusing on computational thinking, algorithms, and analytical problem-solving.',
-    details: [
-      'Coursework in Algorithms, Data Structures, Software Engineering, and Database Systems',
-      'Upper-division mathematics including Real Analysis, Abstract Algebra, and Probability Theory',
-      'Business Minor with Entrepreneurship specialization',
-      'Research experience in Generative AI applications in higher education'
-    ]
-  },
-  {
-    type: 'education',
-    icon: GraduationCap,
-    title: 'High School - Science Stream',
-    institution: 'Liverpool International College, Kathmandu, Nepal',
-    period: 'Aug 2020 – May 2022',
-    description: 'Completed +2 education with emphasis on mathematics and computer science.',
-    details: [
-      'Advanced Mathematics and Physics coursework',
-      'Introduction to programming concepts',
-      'Graduated with strong academic performance'
-    ]
-  }
-];
+  const timelineData = [
+    {
+      type: "education",
+      icon: GraduationCap,
+      title:
+        "Bachelor of Science in Computer Information Science & Bachelor of Science in Pure Mathematics",
+      institution: "Washburn University, Topeka, KS",
+      period: "Aug 2023 – Dec 2026",
+      description:
+        "Double-major focusing on computational thinking, algorithms, and analytical problem-solving.",
+      details: [
+        "Coursework in Algorithms, Data Structures, Software Engineering, and Database Systems",
+        "Upper-division mathematics including Real Analysis, Abstract Algebra, and Probability Theory",
+        "Business Minor with Entrepreneurship specialization",
+        "Research experience in Generative AI applications in higher education",
+      ],
+    },
+    {
+      type: "education",
+      icon: GraduationCap,
+      title: "High School - Science Stream",
+      institution: "Liverpool International College, Kathmandu, Nepal",
+      period: "Aug 2020 – May 2022",
+      description:
+        "Completed +2 education with emphasis on mathematics and computer science.",
+      details: [
+        "Advanced Mathematics and Physics coursework",
+        "Introduction to programming concepts",
+        "Graduated with strong academic performance",
+      ],
+    },
+  ];
 
-const certifications = [
-  'CS50X: Introduction to Computer Science — Harvard University (Online, 2022)',
-  'Stanford Engineering Everywhere (SEE): Programming Methodology — Stanford University (Online, 2022)',
-  'Machine Learning with Python — Deerwalk Training Center, Kathmandu (2023)',
-  'Digital Marketing Certification — IIDE (Online, 2023)'
-];
-
+  const certifications = [
+    "CS50X: Introduction to Computer Science — Harvard University (Online, 2022)",
+    "Stanford Engineering Everywhere (SEE): Programming Methodology — Stanford University (Online, 2022)",
+    "Machine Learning with Python — Deerwalk Training Center, Kathmandu (2023)",
+    "Digital Marketing Certification — IIDE (Online, 2023)",
+  ];
 
   return (
     <section className="py-20 bg-app">
@@ -81,12 +83,18 @@ const certifications = [
             <div className="md:hidden flex justify-center mb-6">
               <div className="relative">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[var(--accent)] to-[var(--accent-strong)] opacity-30 blur-xl scale-110"></div>
-                <div className="relative w-32 h-32 rounded-full overflow-hidden" style={{ border: '2px solid var(--accent-muted)', boxShadow: 'var(--shadow-card)' }}>
+                <div
+                  className="relative w-32 h-32 rounded-full overflow-hidden"
+                  style={{
+                    border: "2px solid var(--accent-muted)",
+                    boxShadow: "var(--shadow-card)",
+                  }}
+                >
                   <Image
                     src="/profile.jpg"
                     alt="Rajdeep Sah"
                     fill
-                    style={{ objectFit: 'cover', objectPosition: 'top' }}
+                    style={{ objectFit: "cover", objectPosition: "top" }}
                   />
                 </div>
               </div>
@@ -95,8 +103,9 @@ const certifications = [
               About Me
             </h2>
             <p className="text-xl text-secondary max-w-3xl mx-auto">
-              A passionate AI/ML Engineer and researcher with a strong foundation in mathematics
-              and computer science, dedicated to solving complex problems through innovative technology.
+              A passionate AI/ML Engineer and researcher with a strong
+              foundation in mathematics and computer science, dedicated to
+              solving complex problems through innovative technology.
             </p>
           </motion.div>
 
@@ -123,7 +132,7 @@ const certifications = [
               {timelineData.map((item, index) => {
                 const Icon = item.icon;
                 const isLeft = index % 2 === 0;
-                
+
                 return (
                   <motion.div
                     key={index}
@@ -131,7 +140,7 @@ const certifications = [
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: index * 0.1 }}
                     className={`relative flex items-center ${
-                      isLeft ? 'md:flex-row' : 'md:flex-row-reverse'
+                      isLeft ? "md:flex-row" : "md:flex-row-reverse"
                     }`}
                   >
                     {/* Timeline Icon */}
@@ -144,41 +153,48 @@ const certifications = [
                     </div>
 
                     {/* Content Card */}
-                    <div className={`ml-16 md:ml-0 md:w-1/2 ${
-                      isLeft ? 'md:pr-8' : 'md:pl-8'
-                    }`}>
+                    <div
+                      className={`ml-16 md:ml-0 md:w-1/2 ${
+                        isLeft ? "md:pr-8" : "md:pl-8"
+                      }`}
+                    >
                       <motion.div
                         whileHover={{ scale: 1.02 }}
                         className="card-premium p-6"
                       >
                         <div className="flex items-center mb-2">
-                          <div className={`w-3 h-3 rounded-full mr-3 ${
-                            item.type === 'education'
-                              ? 'bg-[var(--accent-strong)]'
-                              : item.type === 'experience'
-                              ? 'bg-[var(--accent)]'
-                              : 'bg-amber-400'
-                          }`}></div>
+                          <div
+                            className={`w-3 h-3 rounded-full mr-3 ${
+                              item.type === "education"
+                                ? "bg-[var(--accent-strong)]"
+                                : item.type === "experience"
+                                  ? "bg-[var(--accent)]"
+                                  : "bg-amber-400"
+                            }`}
+                          ></div>
                           <span className="text-sm font-medium text-muted">
                             {item.period}
                           </span>
                         </div>
-                        
+
                         <h3 className="text-xl font-bold text-primary mb-1">
                           {item.title}
                         </h3>
-                        
+
                         <p className="text-lg font-semibold text-[var(--accent)] mb-2">
                           {item.institution}
                         </p>
-                        
+
                         <p className="text-secondary mb-4">
                           {item.description}
                         </p>
-                        
+
                         <ul className="space-y-1">
                           {item.details.map((detail, detailIndex) => (
-                            <li key={detailIndex} className="text-sm text-muted flex items-start">
+                            <li
+                              key={detailIndex}
+                              className="text-sm text-muted flex items-start"
+                            >
                               <span className="w-1.5 h-1.5 bg-[var(--accent-muted)] rounded-full mt-2 mr-2 flex-shrink-0"></span>
                               {detail}
                             </li>
@@ -199,13 +215,19 @@ const certifications = [
                           <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[var(--accent)] to-[var(--accent-strong)] opacity-20 blur-2xl scale-110 pointer-events-none"></div>
                           <div
                             className="relative w-64 h-72 rounded-2xl overflow-hidden"
-                            style={{ border: '2px solid var(--accent-muted)', boxShadow: 'var(--shadow-card)' }}
+                            style={{
+                              border: "2px solid var(--accent-muted)",
+                              boxShadow: "var(--shadow-card)",
+                            }}
                           >
                             <Image
                               src="/profile.jpg"
                               alt="Rajdeep Sah"
                               fill
-                              style={{ objectFit: 'cover', objectPosition: 'top' }}
+                              style={{
+                                objectFit: "cover",
+                                objectPosition: "top",
+                              }}
                             />
                           </div>
                         </div>
@@ -217,7 +239,6 @@ const certifications = [
             </div>
           </motion.div>
 
-
           {/* Certifications Section */}
           <motion.div variants={itemVariants} className="card-premium p-8">
             <h3 className="text-2xl font-bold text-primary mb-6 text-center">
@@ -226,10 +247,7 @@ const certifications = [
 
             <ul className="space-y-3 text-secondary max-w-3xl mx-auto">
               {certifications.map((cert, index) => (
-                <li 
-                  key={index} 
-                  className="text-sm flex items-start"
-                >
+                <li key={index} className="text-sm flex items-start">
                   <span className="w-2 h-2 bg-[var(--accent-muted)] rounded-full mt-2 mr-2 flex-shrink-0"></span>
                   {cert}
                 </li>
@@ -266,7 +284,11 @@ const certifications = [
                   <li>Cloud Platforms (AWS)</li>
                   <li>SQL (MySQL, PostgreSQL), MongoDB</li>
                   <li>Git, Postman, JUnit, PyTest, Selenium</li>
-                  <li> LATEX (academic writing), Jira, Trello, Agile & Scrum methodologies</li>
+                  <li>
+                    {" "}
+                    LATEX (academic writing), Jira, Trello, Agile & Scrum
+                    methodologies
+                  </li>
                   <li>Blockchain Technology</li>
                 </ul>
               </div>
