@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { cubicBezier, easeOut, motion } from 'framer-motion';
 import { Download, GraduationCap, Briefcase, Award } from 'lucide-react';
 
@@ -81,7 +82,12 @@ const certifications = [
               <div className="relative">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[var(--accent)] to-[var(--accent-strong)] opacity-30 blur-xl scale-110"></div>
                 <div className="relative w-32 h-32 rounded-full overflow-hidden" style={{ border: '2px solid var(--accent-muted)', boxShadow: 'var(--shadow-card)' }}>
-                  <img src="/profile.jpg" alt="Rajdeep Sah" className="w-full h-full object-cover object-top" />
+                  <Image
+                    src="/profile.jpg"
+                    alt="Rajdeep Sah"
+                    fill
+                    style={{ objectFit: 'cover', objectPosition: 'top' }}
+                  />
                 </div>
               </div>
             </div>
@@ -195,10 +201,11 @@ const certifications = [
                             className="relative w-64 h-72 rounded-2xl overflow-hidden"
                             style={{ border: '2px solid var(--accent-muted)', boxShadow: 'var(--shadow-card)' }}
                           >
-                            <img
+                            <Image
                               src="/profile.jpg"
                               alt="Rajdeep Sah"
-                              className="w-full h-full object-cover object-top"
+                              fill
+                              style={{ objectFit: 'cover', objectPosition: 'top' }}
                             />
                           </div>
                         </div>
