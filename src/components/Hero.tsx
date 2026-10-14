@@ -2,6 +2,7 @@
 
 import { cubicBezier, motion } from "framer-motion";
 import { Download, Mail, Github, Linkedin, Twitter } from "lucide-react";
+import HeroModel from "@/components/HeroModel";
 
 const Hero = () => {
   const containerVariants = {
@@ -38,19 +39,24 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-app text-primary"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-app text-primary pt-24 pb-28"
     >
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-center gap-6 sm:gap-10 lg:gap-12">
+        {/* 3D model — above the text on mobile/tablet, right column on desktop */}
+        <div className="order-1 lg:order-2 w-full">
+          <HeroModel />
+        </div>
+
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="space-y-8"
+          className="order-2 lg:order-1 space-y-6 sm:space-y-8 text-center lg:text-left"
         >
           {/* Name */}
           <motion.h1
             variants={itemVariants}
-            className="text-5xl md:text-7xl font-bold text-primary"
+            className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold text-primary"
           >
             Rajdeep Sah
           </motion.h1>
@@ -58,7 +64,7 @@ const Hero = () => {
           {/* Title */}
           <motion.div
             variants={itemVariants}
-            className="text-xl md:text-2xl text-secondary space-y-2"
+            className="text-lg sm:text-xl xl:text-2xl text-secondary space-y-2"
           >
             <p>
               <b>Computer science & Mathematics student</b>
@@ -73,7 +79,7 @@ const Hero = () => {
           {/* Tagline */}
           <motion.p
             variants={itemVariants}
-            className="text-lg md:text-xl text-muted max-w-2xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg xl:text-xl text-muted max-w-2xl mx-auto lg:mx-0 leading-relaxed"
           >
             <i style={{ fontFamily: "Times New Roman, Times, serif" }}>
               I’m naturally curious and always looking to understand the “why”
@@ -88,7 +94,7 @@ const Hero = () => {
           {/* CTA Buttons */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center"
           >
             <motion.a
               href="/resume.pdf"
@@ -117,7 +123,7 @@ const Hero = () => {
           {/* Social Links */}
           <motion.div
             variants={itemVariants}
-            className="flex justify-center space-x-6 pt-8"
+            className="flex justify-center lg:justify-start space-x-6 pt-4 sm:pt-8"
           >
             <motion.a
               href="https://github.com/rajdeepsah"
