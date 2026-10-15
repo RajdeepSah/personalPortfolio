@@ -1,133 +1,107 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
-import { Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
+import { XIcon } from "@/components/icons";
+import { navItems } from "@/lib/nav";
+import { siteConfig } from "@/lib/site";
+
+const socialLinks = [
+  { icon: Github, label: "GitHub", link: siteConfig.socials.github },
+  { icon: Linkedin, label: "LinkedIn", link: siteConfig.socials.linkedin },
+  { icon: XIcon, label: "X (Twitter)", link: siteConfig.socials.x },
+];
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const socialLinks = [
-    {
-      icon: Github,
-      label: "GitHub",
-      link: "https://github.com/RajdeepSah",
-      color: "hover:text-[var(--accent)]",
-    },
-    {
-      icon: Linkedin,
-      label: "LinkedIn",
-      link: "https://www.linkedin.com/in/rajdeep-sah-0a5363204/",
-      color: "hover:text-[var(--accent-strong)]",
-    },
-    {
-      icon: Twitter,
-      label: "Twitter",
-      link: "https://x.com/RajdeepShah_",
-      color: "hover:text-[var(--accent-strong)]",
-    },
-    {
-      icon: Mail,
-      label: "Email",
-      link: "mailto:rajdeepofficialework@gmail.com",
-      color: "hover:text-[var(--accent)]",
-    },
-  ];
-
-  const quickLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Projects", href: "/projects" },
-    { name: "Experience", href: "/experience" },
-    { name: "Leadership", href: "/leadership" },
-    { name: "Research", href: "/research" },
-    { name: "Contact", href: "/contact" },
-  ];
-
   return (
-    <footer className="bg-[var(--surface-muted)] text-primary border-t border-soft">
+    <footer className="relative z-10 bg-[var(--surface-muted)] text-primary border-t border-soft">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {/* Brand Section */}
-          <div className="space-y-4">
-            <h3 className="text-2xl font-bold text-primary">Rajdeep Sah</h3>
-            <p className="text-muted leading-relaxed">
-              AI/ML Engineer, Researcher, and Developer passionate about solving
-              complex problems through artificial intelligence and machine
-              learning.
+          <div className="space-y-4 sm:col-span-2 lg:col-span-1">
+            <p className="text-2xl font-bold text-primary">{siteConfig.name}</p>
+            <p className="text-muted leading-relaxed max-w-md">
+              Computer Information Science student and AI/ML researcher building
+              data-driven software at the intersection of code and mathematics.
             </p>
-            <div className="flex space-x-4">
-              {socialLinks.map((social, index) => {
+            <div className="flex gap-3">
+              {socialLinks.map((social) => {
                 const Icon = social.icon;
 
                 return (
-                  <motion.a
-                    key={index}
+                  <a
+                    key={social.label}
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.2, rotate: 5 }}
-                    whileTap={{ scale: 0.9 }}
-                    className={`w-10 h-10 icon-chip rounded-2xl flex items-center justify-center text-primary transition-transform duration-200 ${social.color}`}
+                    aria-label={social.label}
+                    className="icon-link w-10 h-10 icon-chip rounded-2xl flex items-center justify-center text-primary"
                   >
-                    <Icon size={18} />
-                  </motion.a>
+                    <Icon size={18} aria-hidden="true" />
+                  </a>
                 );
               })}
             </div>
           </div>
 
           {/* Quick Links */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-primary">Quick Links</h4>
-            <ul className="space-y-2">
-              {quickLinks.map((link, index) => (
-                <li key={index}>
-                  <motion.div whileHover={{ x: 5 }}>
-                    <Link
-                      href={link.href}
-                      className="text-muted hover:text-primary transition-colors duration-200"
-                    >
-                      {link.name}
-                    </Link>
-                  </motion.div>
+          <nav aria-label="Footer" className="space-y-4">
+            <p className="text-lg font-semibold text-primary">Quick Links</p>
+            <ul className="grid grid-cols-2 gap-2">
+              {navItems.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-muted hover:text-primary transition-colors duration-200"
+                  >
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
           {/* Contact Info */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-primary">Get In Touch</h4>
-            <div className="space-y-2 text-muted">
-              <p>rajdeepofficialework@gmail.com</p>
-              <p>+1 (785) 730-1643</p>
-              <p>Topeka, Kansas, USA</p>
-            </div>
-            <motion.a
-              href="mailto:rajdeepofficialework@gmail.com"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <p className="text-lg font-semibold text-primary">Get In Touch</p>
+            <ul className="space-y-2 text-muted">
+              <li>
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="hover:text-primary transition-colors duration-200 [overflow-wrap:anywhere]"
+                >
+                  {siteConfig.email}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={siteConfig.phone.href}
+                  className="hover:text-primary transition-colors duration-200"
+                >
+                  {siteConfig.phone.display}
+                </a>
+              </li>
+              <li>{siteConfig.location}</li>
+            </ul>
+            <a
+              href={`mailto:${siteConfig.email}`}
               className="inline-flex items-center px-4 py-2 btn-premium text-sm font-medium gap-2"
             >
-              <Mail className="w-4 h-4" />
+              <Mail className="w-4 h-4" aria-hidden="true" />
               Send Email
-            </motion.a>
+            </a>
           </div>
         </div>
 
         {/* Bottom Section */}
         <div className="border-t border-soft mt-8 pt-8">
-          <div className="flex flex-col md:flex-row items-center justify-between">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center">
             <p className="text-muted text-sm">
-              © {currentYear} Rajdeep Sah. All rights reserved.
+              © {currentYear} {siteConfig.name}. All rights reserved.
             </p>
-            <motion.p
-              className="text-muted text-sm flex items-center mt-4 md:mt-0"
-              whileHover={{ scale: 1.05 }}
-            >
+            <p className="text-muted text-sm">
               Designed with logic, symmetry & a little chaos
-            </motion.p>
+            </p>
           </div>
         </div>
       </div>

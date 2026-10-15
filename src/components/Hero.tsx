@@ -1,187 +1,127 @@
-"use client";
-
-import { cubicBezier, motion } from "framer-motion";
-import { Download, Mail, Github, Linkedin, Twitter } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, FileText, Github, Linkedin } from "lucide-react";
 import HeroModel from "@/components/HeroModel";
+import { XIcon } from "@/components/icons";
+import { siteConfig } from "@/lib/site";
 
-const Hero = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2,
-      },
-    },
-  };
+const socialLinks = [
+  { icon: Github, label: "GitHub", link: siteConfig.socials.github },
+  { icon: Linkedin, label: "LinkedIn", link: siteConfig.socials.linkedin },
+  { icon: XIcon, label: "X (Twitter)", link: siteConfig.socials.x },
+];
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: cubicBezier(0.25, 0.1, 0.25, 1),
-      },
-    },
-  };
+// Staggered CSS fade-in. CSS (not JS) animation so the text paints with the
+// server HTML instead of waiting for hydration.
+const stagger = (ms: number) => ({ animationDelay: `${ms}ms` });
 
-  const buttonVariants = {
-    hover: {
-      scale: 1.05,
-      transition: { duration: 0.2 },
-    },
-    tap: { scale: 0.95 },
-  };
+const Hero = () => (
+  <section
+    id="home"
+    className="relative flex min-h-[100svh] items-center justify-center overflow-hidden pt-24 pb-24 lg:pb-16"
+  >
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-center gap-8 sm:gap-10 lg:gap-12">
+      <div className="space-y-6 sm:space-y-7 text-center lg:text-left">
+        <p className="section-eyebrow animate-fade-up">Hello, I&rsquo;m</p>
 
-  return (
-    <section
-      id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-app text-primary pt-24 pb-28"
-    >
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-center gap-6 sm:gap-10 lg:gap-12">
-        {/* 3D model — above the text on mobile/tablet, right column on desktop */}
-        <div className="order-1 lg:order-2 w-full">
-          <HeroModel />
+        <h1
+          className="text-5xl sm:text-6xl xl:text-7xl font-bold tracking-tight text-primary animate-fade-up"
+          style={stagger(60)}
+        >
+          {siteConfig.name}
+        </h1>
+
+        <div
+          className="space-y-2 text-lg sm:text-xl xl:text-2xl animate-fade-up"
+          style={stagger(140)}
+        >
+          <p className="font-semibold text-primary">
+            Computer Information Science student{" "}
+            <span className="hidden sm:inline text-muted" aria-hidden="true">
+              ·{" "}
+            </span>
+            <span className="block sm:inline">Math minor</span>
+          </p>
+          <p className="gradient-text font-semibold">
+            AI/ML Researcher · Developer · Entrepreneur · Mentor
+          </p>
         </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="order-2 lg:order-1 space-y-6 sm:space-y-8 text-center lg:text-left"
+        <p
+          className="text-base sm:text-lg xl:text-xl text-secondary max-w-xl mx-auto lg:mx-0 leading-relaxed animate-fade-up"
+          style={stagger(220)}
         >
-          {/* Name */}
-          <motion.h1
-            variants={itemVariants}
-            className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold text-primary"
+          Naturally curious about the &ldquo;why&rdquo; behind things, I turn
+          complex ideas in AI and mathematical modeling into practical,
+          data-driven systems.
+        </p>
+
+        <div
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start items-center animate-fade-up"
+          style={stagger(300)}
+        >
+          <a
+            href={siteConfig.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-7 py-3 btn-premium font-medium"
           >
-            Rajdeep Sah
-          </motion.h1>
+            <FileText className="mr-2" size={20} aria-hidden="true" />
+            View Resume
+          </a>
 
-          {/* Title */}
-          <motion.div
-            variants={itemVariants}
-            className="text-lg sm:text-xl xl:text-2xl text-secondary space-y-2"
+          <Link
+            href="/projects"
+            className="group inline-flex items-center px-7 py-3 btn-outline-premium font-medium"
           >
-            <p>
-              <b>Computer science & Mathematics student</b>
-            </p>
-            <p>
-              AI/ML Researcher | Mathematical Researcher | Developer |
-              Entrepreneur
-            </p>
-            <p>Tutor | Mentor</p>
-          </motion.div>
+            Explore Projects
+            <ArrowRight
+              className="ml-2 transition-transform duration-200 group-hover:translate-x-1"
+              size={20}
+              aria-hidden="true"
+            />
+          </Link>
+        </div>
 
-          {/* Tagline */}
-          <motion.p
-            variants={itemVariants}
-            className="text-base sm:text-lg xl:text-xl text-muted max-w-2xl mx-auto lg:mx-0 leading-relaxed"
-          >
-            <i style={{ fontFamily: "Times New Roman, Times, serif" }}>
-              I’m naturally curious and always looking to understand the “why”
-              behind things. I enjoy working on artificial intelligence and
-              mathematical modeling, and I’m passionate about building adaptive,
-              data-driven systems to solve real-world challenges. I like turning
-              complex ideas into practical, impactful solutions—something I
-              genuinely enjoy as a hobby.
-            </i>
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center"
-          >
-            <motion.a
-              href="/resume.pdf"
-              download
-              variants={buttonVariants}
-              whileHover="hover"
-              whileTap="tap"
-              className="inline-flex items-center px-8 py-3 btn-premium font-medium"
-            >
-              <Download className="mr-2" size={20} />
-              View Resume
-            </motion.a>
-
-            <motion.a
-              href="/projects"
-              variants={buttonVariants}
-              whileHover="hover"
-              whileTap="tap"
-              className="inline-flex items-center px-8 py-3 btn-outline-premium font-medium"
-            >
-              <Mail className="mr-2" size={20} />
-              Explore Projects
-            </motion.a>
-          </motion.div>
-
-          {/* Social Links */}
-          <motion.div
-            variants={itemVariants}
-            className="flex justify-center lg:justify-start space-x-6 pt-4 sm:pt-8"
-          >
-            <motion.a
-              href="https://github.com/rajdeepsah"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.2, rotate: 5 }}
-              whileTap={{ scale: 0.9 }}
-              className="text-muted hover:text-primary transition-colors duration-200 drop-shadow"
-            >
-              <Github size={24} />
-            </motion.a>
-
-            <motion.a
-              href="https://linkedin.com/in/rajdeepsah"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.2, rotate: -5 }}
-              whileTap={{ scale: 0.9 }}
-              className="text-muted hover:text-primary transition-colors duration-200 drop-shadow"
-            >
-              <Linkedin size={24} />
-            </motion.a>
-
-            <motion.a
-              href="https://twitter.com/rajdeepsah"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.2, rotate: 5 }}
-              whileTap={{ scale: 0.9 }}
-              className="text-muted hover:text-primary transition-colors duration-200 drop-shadow"
-            >
-              <Twitter size={24} />
-            </motion.a>
-          </motion.div>
-        </motion.div>
+        <ul
+          className="flex justify-center lg:justify-start gap-3 pt-2 animate-fade-up"
+          style={stagger(380)}
+        >
+          {socialLinks.map((social) => {
+            const Icon = social.icon;
+            return (
+              <li key={social.label}>
+                <a
+                  href={social.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="icon-link w-11 h-11 icon-chip rounded-2xl flex items-center justify-center text-primary"
+                >
+                  <Icon size={20} aria-hidden="true" />
+                </a>
+              </li>
+            );
+          })}
+        </ul>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-soft rounded-full flex justify-center"
-        >
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-1 h-3 bg-surface-muted rounded-full mt-2"
-          />
-        </motion.div>
-      </motion.div>
-    </section>
-  );
-};
+      <div className="w-full">
+        <HeroModel />
+      </div>
+    </div>
+
+    {/* Scroll cue to the content below */}
+    <a
+      href="#featured"
+      aria-label="Scroll to featured work"
+      className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex w-6 h-10 border-2 border-soft rounded-full justify-center"
+    >
+      <span
+        aria-hidden="true"
+        className="w-1 h-3 bg-[var(--accent)] rounded-full mt-2 animate-scroll-cue"
+      />
+    </a>
+  </section>
+);
 
 export default Hero;

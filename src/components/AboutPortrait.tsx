@@ -1,5 +1,3 @@
-"use client";
-
 import ModelViewer from "@/components/ModelViewer";
 
 /** Framed, interactive 3D bust of Rajdeep. Size it via `className`. */

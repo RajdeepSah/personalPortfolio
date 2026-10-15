@@ -2,113 +2,158 @@
 
 import { useEffect, useRef } from "react";
 
+const SYMBOLS = ["∫", "∑", "π", "∞", "∇", "∂", "α", "β", "γ"];
+const FRAME_MS = 1000 / 30; // a slow ambient background doesn't need 60fps
+
+/** Decorative sine waves, orbiting circles and drifting math symbols. */
 const MathBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    const ctx = canvas?.getContext("2d");
+    if (!canvas || !ctx) return;
 
-    // Respect user's reduced-motion preference
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (prefersReducedMotion) return;
+    // Phones get a single static frame: saves battery and keeps the main
+    // thread free for the 3D model.
+    const reducedMotion =
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      window.matchMedia("(max-width: 767px)").matches;
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    let width = 0;
+    let height = 0;
+    let color = "";
 
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    // Theme-aware stroke color from the --bg-line token.
+    const readColor = () => {
+      color =
+        getComputedStyle(document.documentElement)
+          .getPropertyValue("--bg-line")
+          .trim() || "rgba(91, 61, 245, 0.1)";
     };
 
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.font = "20px serif";
+    };
 
-    // Mathematical function parameters
-    const amplitude = 50;
-    const frequency = 0.01;
-    let time = 0;
-    let animationFrameId: number;
-
-    // Animation loop
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Set stroke style
-      ctx.strokeStyle = "rgba(59, 130, 246, 0.1)";
+    const draw = (time: number) => {
+      ctx.clearRect(0, 0, width, height);
+      ctx.strokeStyle = color;
+      ctx.fillStyle = color;
       ctx.lineWidth = 1;
 
-      // Draw multiple sine waves
+      // Sine waves
       for (let i = 0; i < 3; i++) {
         ctx.beginPath();
-        const yOffset = canvas.height / 4 + (i * canvas.height) / 4;
-        const waveAmplitude = amplitude * (1 - i * 0.3);
-        const waveFrequency = frequency * (1 + i * 0.5);
-
-        for (let x = 0; x < canvas.width; x += 2) {
+        const yOffset = height / 4 + (i * height) / 4;
+        const amplitude = 50 * (1 - i * 0.3);
+        const frequency = 0.01 * (1 + i * 0.5);
+        for (let x = 0; x <= width; x += 4) {
           const y =
             yOffset +
-            Math.sin(x * waveFrequency + time + (i * Math.PI) / 3) *
-              waveAmplitude;
-
-          if (x === 0) {
-            ctx.moveTo(x, y);
-          } else {
-            ctx.lineTo(x, y);
-          }
+            Math.sin(x * frequency + time + (i * Math.PI) / 3) * amplitude;
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
         }
         ctx.stroke();
       }
 
-      // Draw mathematical symbols as floating particles
-      ctx.fillStyle = "rgba(59, 130, 246, 0.05)";
-      const symbols = ["∫", "∑", "π", "∞", "∇", "∂", "α", "β", "γ"];
-
+      // Drifting symbols
       for (let i = 0; i < 8; i++) {
-        const x = (time * 0.5 + i * 200) % (canvas.width + 100);
-        const y = canvas.height / 2 + Math.sin(time * 0.02 + i) * 100;
-        const symbol = symbols[i % symbols.length];
-
-        ctx.font = "20px serif";
-        ctx.fillText(symbol, x, y);
+        const x = (time * 0.5 + i * 200) % (width + 100);
+        const y = height / 2 + Math.sin(time * 0.02 + i) * 100;
+        ctx.fillText(SYMBOLS[i % SYMBOLS.length], x, y);
       }
 
-      // Draw geometric shapes
-      ctx.strokeStyle = "rgba(59, 130, 246, 0.08)";
-      ctx.lineWidth = 1;
-
-      // Circles
+      // Orbiting circles
       for (let i = 0; i < 5; i++) {
-        const centerX =
-          canvas.width / 2 + Math.cos(time * 0.01 + (i * Math.PI) / 2.5) * 200;
-        const centerY =
-          canvas.height / 2 + Math.sin(time * 0.01 + (i * Math.PI) / 2.5) * 100;
+        const angle = time * 0.01 + (i * Math.PI) / 2.5;
         const radius = 30 + Math.sin(time * 0.02 + i) * 10;
-
         ctx.beginPath();
-        ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+        ctx.arc(
+          width / 2 + Math.cos(angle) * 200,
+          height / 2 + Math.sin(angle) * 100,
+          radius,
+          0,
+          2 * Math.PI,
+        );
         ctx.stroke();
       }
-
-      time += 0.5;
-      animationFrameId = requestAnimationFrame(animate);
     };
 
-    animate();
+    readColor();
+    resize();
+
+    let time = 0;
+    let frameId = 0;
+    let last = 0;
+
+    const loop = (now: number) => {
+      frameId = requestAnimationFrame(loop);
+      if (now - last < FRAME_MS) return;
+      last = now;
+      time += 0.5;
+      draw(time);
+    };
+
+    const start = () => {
+      cancelAnimationFrame(frameId);
+      if (reducedMotion) draw(time);
+      else frameId = requestAnimationFrame(loop);
+    };
+
+    const onResize = () => {
+      resize();
+      if (reducedMotion) draw(time);
+    };
+
+    const onVisibility = () => {
+      if (document.hidden) cancelAnimationFrame(frameId);
+      else start();
+    };
+
+    // Re-read the color when the theme class on <html> changes.
+    const themeObserver = new MutationObserver(() => {
+      readColor();
+      if (reducedMotion) draw(time);
+    });
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    window.addEventListener("resize", onResize);
+    document.addEventListener("visibilitychange", onVisibility);
+    // Purely decorative: wait until the page is idle so it never delays the
+    // first paint or hydration.
+    const idleHandle =
+      "requestIdleCallback" in window
+        ? window.requestIdleCallback(start, { timeout: 3000 })
+        : undefined;
+    const fallbackTimer =
+      idleHandle === undefined ? setTimeout(start, 1500) : undefined;
 
     return () => {
-      window.removeEventListener("resize", resizeCanvas);
-      cancelAnimationFrame(animationFrameId);
+      if (idleHandle !== undefined) window.cancelIdleCallback(idleHandle);
+      clearTimeout(fallbackTimer);
+      cancelAnimationFrame(frameId);
+      themeObserver.disconnect();
+      window.removeEventListener("resize", onResize);
+      document.removeEventListener("visibilitychange", onVisibility);
     };
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0"
-      style={{ background: "transparent" }}
+      aria-hidden="true"
+      className="fixed inset-0 h-full w-full pointer-events-none z-0"
     />
   );
 };

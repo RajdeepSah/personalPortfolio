@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import AppShell from "@/components/AppShell";
+import Footer from "@/components/Footer";
+import { siteConfig } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,52 +15,30 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const defaultTitle = `${siteConfig.name} · ${siteConfig.role}`;
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rajdeep.officialework.com"),
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Rajdeep Sah - AI/ML Engineer | Researcher | Developer",
-    template: "%s | Rajdeep Sah",
+    default: defaultTitle,
+    template: `%s | ${siteConfig.name}`,
   },
-  description:
-    "AI/ML Engineer, AI Researcher, Mathematical Researcher, Developer, and Manager. Passionate about solving complex problems through artificial intelligence and machine learning.",
-  keywords: [
-    "Rajdeep Sah",
-    "AI",
-    "Machine Learning",
-    "web development",
-    "game development",
-    "software development",
-    "database systems",
-    "Research",
-    "Developer",
-    "Mathematical Research",
-    "Artificial Intelligence",
-  ],
-  authors: [{ name: "Rajdeep Sah" }],
-  creator: "Rajdeep Sah",
+  description: siteConfig.description,
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
   openGraph: {
-    title: "Rajdeep Sah - AI/ML Engineer | Researcher | Developer",
-    description:
-      "AI/ML Engineer, AI Researcher, Mathematical Researcher, Developer, and Manager. Passionate about solving complex problems through artificial intelligence and machine learning.",
+    title: defaultTitle,
+    description: siteConfig.description,
     type: "website",
     locale: "en_US",
-    url: "https://rajdeep.officialework.com",
-    siteName: "Rajdeep Sah Portfolio",
-    images: [
-      {
-        url: "/profile.jpg",
-        width: 800,
-        height: 900,
-        alt: "Rajdeep Sah - AI/ML Engineer",
-      },
-    ],
+    url: siteConfig.url,
+    siteName: `${siteConfig.name} Portfolio`,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rajdeep Sah - AI/ML Engineer | Researcher | Developer",
-    description:
-      "AI/ML Engineer, AI Researcher, Mathematical Researcher, Developer, and Manager.",
-    images: ["/profile.jpg"],
+    title: defaultTitle,
+    description: siteConfig.description,
+    creator: "@RajdeepShah_",
   },
   robots: {
     index: true,
@@ -72,7 +52,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://rajdeep.officialework.com",
+    canonical: siteConfig.url,
   },
 };
 
@@ -82,12 +62,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300`}
-        suppressHydrationWarning
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AppShell>{children}</AppShell>
+        <AppShell footer={<Footer />}>{children}</AppShell>
       </body>
     </html>
   );

@@ -18,14 +18,19 @@ type ModelViewerProps = {
   shadowIntensity?: string;
   /** Sway ± this many degrees around the starting angle instead of spinning 360°. */
   sway?: number;
+  /** Above-the-fold model: fetch the poster eagerly with high priority. */
+  priority?: boolean;
 };
+
+type NetworkInformation = { saveData?: boolean };
 
 /**
  * Interactive GLB viewer. A static poster renders immediately and
  * cross-fades out once <model-viewer> has finished loading the model.
- * The viewer is only loaded once the container is near the viewport, so
- * hidden (display: none) or off-screen instances cost nothing. Fills its
- * positioned parent.
+ * The viewer is only loaded once the container is near the viewport and the
+ * browser is idle, so hidden (display: none) or off-screen instances cost
+ * nothing and the model never competes with the first paint. On Data Saver
+ * connections it waits for a tap instead. Fills its positioned parent.
  */
 const ModelViewer = ({
   src,
@@ -42,26 +47,54 @@ const ModelViewer = ({
   exposure = "1.05",
   shadowIntensity = "1",
   sway,
+  priority = false,
 }: ModelViewerProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const viewerRef = useRef<HTMLElement | null>(null);
   const [viewerReady, setViewerReady] = useState(false);
   const [modelLoaded, setModelLoaded] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [waitingForTap, setWaitingForTap] = useState(false);
+  const loadRequested = useRef(false);
+
+  const loadViewer = () => {
+    if (loadRequested.current) return;
+    loadRequested.current = true;
+    setWaitingForTap(false);
+    // Self-hosted Draco decoder (copied from three) instead of Google's CDN.
+    // Every <model-viewer> constructor re-reads this global config and falls
+    // back to the CDN, so it must be set here rather than on the class.
+    const globalConfig = window as Window & {
+      ModelViewerElement?: Record<string, unknown>;
+    };
+    globalConfig.ModelViewerElement = {
+      ...globalConfig.ModelViewerElement,
+      dracoDecoderLocation: "/draco/",
+    };
+    import("@google/model-viewer").then(() => setViewerReady(true));
+  };
 
   useEffect(() => {
     // Load the web component on the client only, once the container is
-    // visible, so it never blocks the page text (LCP).
-    let cancelled = false;
+    // visible and the main thread is idle, so it never blocks the page text.
+    const saveData = (
+      navigator as Navigator & { connection?: NetworkInformation }
+    ).connection?.saveData;
+    let idleHandle: number | undefined;
+    let fallbackTimer: ReturnType<typeof setTimeout> | undefined;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return;
         observer.disconnect();
-        import("@google/model-viewer").then(({ ModelViewerElement }) => {
-          // Self-hosted Draco decoder (copied from three) instead of Google's CDN.
-          ModelViewerElement.dracoDecoderLocation = "/draco/";
-          if (!cancelled) setViewerReady(true);
-        });
+        if (saveData) {
+          setWaitingForTap(true);
+        } else if ("requestIdleCallback" in window) {
+          idleHandle = window.requestIdleCallback(loadViewer, {
+            timeout: 2500,
+          });
+        } else {
+          fallbackTimer = setTimeout(loadViewer, 600);
+        }
       },
       { rootMargin: "200px" },
     );
@@ -73,8 +106,9 @@ const ModelViewer = ({
     media.addEventListener("change", onChange);
 
     return () => {
-      cancelled = true;
       observer.disconnect();
+      if (idleHandle !== undefined) window.cancelIdleCallback(idleHandle);
+      clearTimeout(fallbackTimer);
       media.removeEventListener("change", onChange);
     };
   }, []);
@@ -133,10 +167,22 @@ const ModelViewer = ({
         width={posterWidth}
         height={posterHeight}
         decoding="async"
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : "auto"}
         className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 pointer-events-none ${
           modelLoaded ? "opacity-0" : "opacity-100"
         }`}
       />
+
+      {waitingForTap && (
+        <button
+          type="button"
+          onClick={loadViewer}
+          className="absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-surface/90 px-4 py-2 text-sm font-medium text-primary shadow border border-soft"
+        >
+          View in 3D
+        </button>
+      )}
 
       {viewerReady &&
         createElement("model-viewer", {

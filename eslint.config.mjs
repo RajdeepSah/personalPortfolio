@@ -18,6 +18,8 @@ const eslintConfig = [
       "out/**",
       "build/**",
       "next-env.d.ts",
+      // Vendored, minified Draco decoder (copied from three)
+      "public/draco/**",
     ],
   },
 ];

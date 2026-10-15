@@ -1,31 +1,37 @@
 import type { Metadata } from "next";
 import Hero from "@/components/Hero";
-import Footer from "@/components/Footer";
+import HomeHighlights from "@/components/HomeHighlights";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://rajdeep.officialework.com" },
+  alternates: { canonical: siteConfig.url },
 };
 
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Rajdeep Sah",
-  url: "https://rajdeep.officialework.com",
-  image: "https://rajdeep.officialework.com/profile.jpg",
-  jobTitle: "AI/ML Engineer",
-  description:
-    "AI/ML Engineer, AI Researcher, Mathematical Researcher, Developer, and Manager.",
+  name: siteConfig.name,
+  url: siteConfig.url,
+  image: `${siteConfig.url}/profile.jpg`,
+  jobTitle: siteConfig.role,
+  description: siteConfig.description,
+  email: `mailto:${siteConfig.email}`,
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Washburn University",
+    sameAs: "https://www.washburn.edu",
+  },
   sameAs: [
-    "https://github.com/rajdeepsah",
-    "https://linkedin.com/in/rajdeepsah",
-    "https://twitter.com/rajdeepsah",
+    siteConfig.socials.github,
+    siteConfig.socials.linkedin,
+    siteConfig.socials.x,
   ],
   knowsAbout: [
     "Artificial Intelligence",
     "Machine Learning",
+    "Generative AI",
     "Web Development",
     "Game Development",
-    "Software Development",
     "Database Systems",
     "Mathematics",
   ],
@@ -34,13 +40,12 @@ const personSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Rajdeep Sah Portfolio",
-  url: "https://rajdeep.officialework.com",
-  description:
-    "Portfolio of Rajdeep Sah — AI/ML Engineer, Researcher, and Developer.",
+  name: `${siteConfig.name} Portfolio`,
+  url: siteConfig.url,
+  description: siteConfig.description,
   author: {
     "@type": "Person",
-    name: "Rajdeep Sah",
+    name: siteConfig.name,
   },
 };
 
@@ -55,10 +60,8 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
-      <div>
-        <Hero />
-        <Footer />
-      </div>
+      <Hero />
+      <HomeHighlights />
     </>
   );
 }
