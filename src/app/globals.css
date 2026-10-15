@@ -331,8 +331,8 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Hero 3D model */
-.hero-model-viewer {
+/* Interactive 3D model (ModelViewer) */
+.model-viewer-canvas {
   position: absolute;
   inset: 0;
   display: block;
@@ -340,6 +340,6 @@ body {
   height: 100%;
   background: transparent;
   --poster-color: transparent;
-  --progress-bar-color: var(--accent);
+  --progress-bar-height: 0px;
   outline: none;
 }
