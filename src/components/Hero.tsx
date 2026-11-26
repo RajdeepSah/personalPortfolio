@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, FileText, Github, Linkedin } from "lucide-react";
-import HeroModel from "@/components/HeroModel";
+import HeroPortrait from "@/components/HeroPortrait";
 import { XIcon } from "@/components/icons";
 import { siteConfig } from "@/lib/site";
 
@@ -106,7 +106,7 @@ const Hero = () => (
       </div>
 
       <div className="w-full">
-        <HeroModel />
+        <HeroPortrait />
       </div>
     </div>
 
