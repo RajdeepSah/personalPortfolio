@@ -416,6 +416,21 @@ html.dark .gradient-text {
   animation: scroll-cue 2s ease-in-out infinite;
 }
 
+/* Gentle hover-in-place for the hero portrait */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
 /* Respect the OS "reduce motion" setting */
 @media (prefers-reduced-motion: reduce) {
   *,
