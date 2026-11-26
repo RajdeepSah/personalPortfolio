@@ -6,7 +6,7 @@ export const siteConfig = {
   name: "Rajdeep Sah",
   role: "Computer Information Science Student & AI/ML Researcher",
   description:
-    "Rajdeep Sah is a Computer Information Science student at Washburn University with a Mathematics minor, an AI/ML researcher published at IACIS 2025, and a developer building data-driven software.",
+    "Rajdeep Sah is a Computer Information Science student at Washburn University, an AI/ML researcher published at IACIS 2025, and a software developer building AI, web, and game projects.",
   url: "https://rajdeep.officialework.com",
   resume: "/resume.pdf",
   email: "rajdeepofficialework@gmail.com",

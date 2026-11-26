@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
 import About from "@/components/About";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema, pageMetadata, profilePageSchema } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "About",
   description:
-    "Learn about Rajdeep Sah — a Computer Science and Mathematics student, AI/ML researcher, software developer, and entrepreneur dedicated to solving complex problems through innovative technology.",
-  alternates: { canonical: "https://rajdeep.officialework.com/about" },
-};
+    "About Rajdeep Sah: Computer Information Science student at Washburn University with a Mathematics minor and Cybersecurity Certificate, AI/ML researcher, and software developer.",
+  path: "/about",
+});
 
 export default function Page() {
   return (
     <div className="pt-16">
+      <JsonLd data={breadcrumbSchema("About", "/about")} />
+      <JsonLd data={profilePageSchema("/about")} />
       <About />
     </div>
   );
