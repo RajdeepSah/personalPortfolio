@@ -22,6 +22,53 @@ export const experienceTypeLabels: Record<ExperienceType, string> = {
 export const experiences: Experience[] = [
   {
     type: "internship",
+    title: "Quality Engineering Intern",
+    company: "FireMon",
+    location: "Overland Park, KS",
+    period: "May 2026 – Aug 2026",
+    description:
+      "Built an internal AI pilot that connects Jira Cloud to an LLM to automate QA ticket analysis and testing workflows, scoped from needs raised in an internal staff survey.",
+    achievements: [
+      "Built a Python tool linking the Jira Cloud REST API to an LLM API to automate QA ticket analysis",
+      "Implemented three output modes and Atlassian Document Format (ADF) handling for Jira Cloud v3",
+      "Designed a ticket-cleanup prompt that rewrites tickets into a structured Summary/Description format",
+      "Researched agentic AI and regression-automation use cases for network security QA to build team buy-in",
+    ],
+    skills: [
+      "Python",
+      "Jira Cloud REST API",
+      "LLM APIs",
+      "Prompt Engineering",
+      "QA Automation",
+      "Agentic AI",
+    ],
+    highlight: true,
+  },
+  {
+    type: "internship",
+    title: "Software Developer & AI Research Intern",
+    company: "Nyalia Software Solutions",
+    location: "Remote",
+    period: "Feb 2024 – Present",
+    description:
+      "Develop web, AI, and game features across the studio's products, working closely with the team to test, iterate, and ship.",
+    achievements: [
+      "Developed web and AI features for Dragon Groove, testing and refining them with the team",
+      "Contributed to development of Kaiju the Big Monster, a mobile game",
+      "Researched and prototyped AI features to bring into production products",
+    ],
+    skills: [
+      "Web Development",
+      "AI Integration",
+      "Mobile Game Development",
+      "Testing & QA",
+      "Research",
+      "Collaboration",
+    ],
+    highlight: true,
+  },
+  {
+    type: "internship",
     title: "Community Management Intern",
     company: "Walgreens",
     location: "Topeka, KS",
