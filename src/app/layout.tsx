@@ -3,7 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import AppShell from "@/components/AppShell";
 import Footer from "@/components/Footer";
+import JsonLd from "@/components/JsonLd";
 import { siteConfig } from "@/lib/site";
+import { keywords, siteGraph } from "@/lib/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,15 +26,22 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  applicationName: siteConfig.name,
+  keywords,
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
+  publisher: siteConfig.name,
+  category: "Portfolio",
+  formatDetection: { email: false, address: false, telephone: false },
   openGraph: {
     title: defaultTitle,
     description: siteConfig.description,
-    type: "website",
+    type: "profile",
+    firstName: "Rajdeep",
+    lastName: "Sah",
     locale: "en_US",
     url: siteConfig.url,
-    siteName: `${siteConfig.name} Portfolio`,
+    siteName: siteConfig.name,
   },
   twitter: {
     card: "summary_large_image",
@@ -54,6 +63,14 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteConfig.url,
   },
+  // Set these in the hosting environment after verifying the site in
+  // Google Search Console / Bing Webmaster Tools.
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+      : undefined,
+  },
 };
 
 export default function RootLayout({
@@ -66,6 +83,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <JsonLd data={siteGraph} />
         <AppShell footer={<Footer />}>{children}</AppShell>
       </body>
     </html>

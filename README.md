@@ -14,6 +14,7 @@ A modern, data-driven personal site built with Next.js 15, React 19, Tailwind CS
 - [Customization Guide](#customization-guide)
 - [Styling & Theming](#styling--theming)
 - [Animations & UX](#animations--ux)
+- [SEO](#seo)
 - [Deployment](#deployment)
 - [Troubleshooting & Tips](#troubleshooting--tips)
 - [Contact & Support](#contact--support)
@@ -149,6 +150,14 @@ Visit [http://localhost:3000](http://localhost:3000) to view the site. The dev s
 - Framer Motion powers section reveals, button hover/tap states, and navigation entrance animations.
 - `RouteTransition.tsx` applies opacity/translate transitions whenever a route changes, creating a cohesive feel between pages.
 - `MathBackground.tsx` renders layered sine waves, floating symbols, and geometric shapes on a fixed canvas to reinforce the mathematical focus of the hero.
+
+## SEO
+
+- **Metadata** – Root metadata in `src/app/layout.tsx`; inner pages use `pageMetadata()` from `src/lib/seo.ts` for title, description, canonical URL, Open Graph and Twitter cards.
+- **Structured data** – Every page carries a schema.org `Person` + `WebSite` graph (name, profile photo, job title, education, social profiles). The home and About pages add `ProfilePage`, inner pages add `BreadcrumbList`, Projects adds an `ItemList` of `SoftwareSourceCode`, and Research adds `ScholarlyArticle`.
+- **Sitemap & robots** – `src/app/sitemap.ts` (with the profile photo as an image entry) and `public/robots.txt`.
+- **Search Console** – Verify the domain in [Google Search Console](https://search.google.com/search-console) and submit `/sitemap.xml`. For HTML-tag verification, set `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` (and optionally `NEXT_PUBLIC_BING_SITE_VERIFICATION`) in the hosting environment.
+- **Validate** – Check pages with the [Rich Results Test](https://search.google.com/test/rich-results).
 
 ## Deployment
 
